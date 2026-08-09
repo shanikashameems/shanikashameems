@@ -1348,45 +1348,168 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
         
+        let isSpinning = false;
+        let sliderTimeout = null;
+        const gridBackdrop = document.getElementById("lab-grid-backdrop");
+        
+        // Tilt preview card programmatically during slider drags to make changes clearly visible!
+        function triggerSliderTilt() {
+            if (isSpinning) return;
+            
+            gsap.to(previewCard, {
+                rotateX: -12,
+                rotateY: 18,
+                transformPerspective: customPerspective,
+                duration: 0.3,
+                ease: "power2.out",
+                overwrite: "auto"
+            });
+            
+            if (gridBackdrop) {
+                gsap.to(gridBackdrop, {
+                    rotateX: 60 - (-0.16 * 15),
+                    rotateY: 0.18 * 15,
+                    translateZ: -100 + (-0.16 * 10),
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            }
+            
+            if (sliderTimeout) clearTimeout(sliderTimeout);
+            sliderTimeout = setTimeout(() => {
+                if (previewCard.matches(':hover')) return; // keep tilt intact if hover is active
+                gsap.to(previewCard, {
+                    rotateX: 0,
+                    rotateY: 0,
+                    duration: 0.8,
+                    ease: "power2.out"
+                });
+                if (gridBackdrop) {
+                    gsap.to(gridBackdrop, {
+                        rotateX: 60,
+                        rotateY: 0,
+                        translateZ: -100,
+                        duration: 0.8,
+                        ease: "power2.out"
+                    });
+                }
+            }, 1200);
+        }
+        
+        // Set initial parent perspective
+        const previewPanel = document.querySelector(".lab-preview-panel");
+        if (previewPanel) previewPanel.style.perspective = `${customPerspective}px`;
+        
         // Input events updating variables & values
         sliderPersp.addEventListener("input", (e) => {
             customPerspective = e.target.value;
             document.getElementById("label-persp").innerText = `${customPerspective}px`;
             document.getElementById("lab-val-persp").innerText = `${customPerspective}px`;
-            previewCard.style.perspective = `${customPerspective}px`;
+            
+            if (previewPanel) previewPanel.style.perspective = `${customPerspective}px`;
+            
             addConsoleLine(`Updated css perspective: ${customPerspective}px;`, "text-cyan");
+            triggerSliderTilt();
         });
         
         sliderTilt.addEventListener("input", (e) => {
             customMaxTilt = e.target.value;
             document.getElementById("label-tilt").innerText = `${customMaxTilt}deg`;
+            document.getElementById("lab-val-tilt").innerText = `${customMaxTilt}deg`;
             addConsoleLine(`Updated max tilt boundary: ${customMaxTilt}deg;`, "text-cyan");
+            triggerSliderTilt();
         });
         
         sliderGlow.addEventListener("input", (e) => {
             customGlowOpacity = e.target.value;
             document.getElementById("label-glow").innerText = customGlowOpacity;
+            document.getElementById("lab-val-glow").innerText = parseFloat(customGlowOpacity).toFixed(2);
             previewCard.style.setProperty("--glow-opacity", customGlowOpacity);
             addConsoleLine(`Set vector ambient glow opacity: ${customGlowOpacity};`, "text-cyan");
+            triggerSliderTilt();
         });
         
-        selectTheme.addEventListener("change", (e) => {
-            consoleTheme = e.target.value;
-            let glowColor = "#387bf6";
-            let colorClass = "text-cyan";
-            if (consoleTheme === "acid-green") {
-                glowColor = "#00ff66";
-                colorClass = "text-green";
-            } else if (consoleTheme === "neon-violet") {
-                glowColor = "#d000ff";
-                colorClass = "text-magenta";
+        // Custom Theme Dropdown Handlers
+        const trigger = document.getElementById("select-theme-trigger");
+        const triggerText = trigger.querySelector(".trigger-text");
+        const triggerDot = trigger.querySelector(".theme-dot");
+        const dropdownMenu = document.getElementById("select-theme-menu");
+        const dropdownWrapper = document.getElementById("select-theme-dropdown");
+        const items = dropdownMenu.querySelectorAll(".dropdown-item");
+        const hiddenInput = document.getElementById("select-theme");
+        
+        if (trigger && dropdownWrapper && items) {
+            trigger.addEventListener("click", (e) => {
+                e.stopPropagation();
+                dropdownWrapper.classList.toggle("open");
+            });
+            
+            document.addEventListener("click", () => {
+                dropdownWrapper.classList.remove("open");
+            });
+            
+            function updateTheme(val) {
+                consoleTheme = val;
+                let glowColor = "#387bf6";
+                let colorClass = "text-cyan";
+                if (consoleTheme === "acid-green") {
+                    glowColor = "#00ff66";
+                    colorClass = "text-green";
+                } else if (consoleTheme === "neon-violet") {
+                    glowColor = "#d000ff";
+                    colorClass = "text-magenta";
+                }
+                
+                previewCard.style.setProperty("--glow-color", glowColor);
+                
+                const cardTitle = previewCard.querySelector(".lab-card-title");
+                if (cardTitle) {
+                    cardTitle.style.setProperty("text-shadow", `0 0 12px ${glowColor}59`);
+                }
+                
+                addConsoleLine(`Reloaded theme schema: ${consoleTheme.toUpperCase()} (${glowColor});`, colorClass);
+                
+                // Trigger espectacular 3D flip spin card transition
+                isSpinning = true;
+                gsap.fromTo(previewCard, 
+                    { rotateY: 0, rotateX: 0 },
+                    { 
+                        rotateY: 360, 
+                        duration: 0.8, 
+                        ease: "power2.inOut",
+                        onComplete: () => {
+                            isSpinning = false;
+                            gsap.set(previewCard, { rotateY: 0, rotateX: 0 });
+                        }
+                    }
+                );
             }
-            previewCard.style.setProperty("--glow-color", glowColor);
-            addConsoleLine(`Reloaded theme schema: ${consoleTheme.toUpperCase()} (${glowColor});`, colorClass);
-        });
+
+            items.forEach(item => {
+                item.addEventListener("click", (e) => {
+                    e.stopPropagation();
+                    
+                    items.forEach(i => i.classList.remove("active"));
+                    item.classList.add("active");
+                    
+                    const val = item.getAttribute("data-value");
+                    const text = item.textContent.trim();
+                    
+                    triggerText.textContent = text;
+                    triggerDot.className = `theme-dot ${val}`;
+                    if (hiddenInput) hiddenInput.value = val;
+                    
+                    dropdownWrapper.classList.remove("open");
+                    updateTheme(val);
+                });
+            });
+        }
+        
+        const telemetryPointer = document.getElementById("lab-telemetry-pointer");
         
         // Real-time card mousemove tilt & coordinate matrix tracking
         previewCard.addEventListener("mousemove", (e) => {
+            if (isSpinning) return;
             const rect = previewCard.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
@@ -1409,6 +1532,28 @@ document.addEventListener("DOMContentLoaded", () => {
                 ease: "power2.out",
                 overwrite: "auto"
             });
+            
+            // Premium 3D Perspective Warp Backdrop Grid
+            if (gridBackdrop) {
+                gsap.to(gridBackdrop, {
+                    rotateX: 60 - yc * 15,
+                    rotateY: xc * 15,
+                    translateZ: -100 + yc * 10,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            }
+            
+            // Telemetry Laser Tracker Crosshair
+            if (telemetryPointer) {
+                gsap.to(telemetryPointer, {
+                    left: `${x}px`,
+                    top: `${y}px`,
+                    opacity: 1,
+                    duration: 0.1,
+                    overwrite: "auto"
+                });
+            }
             
             // Log calculations in terminal console
             const cosX = Math.cos(rotateX * Math.PI / 180).toFixed(4);
@@ -1438,6 +1583,21 @@ document.addEventListener("DOMContentLoaded", () => {
                 ease: "power2.out",
                 overwrite: "auto"
             });
+            if (gridBackdrop) {
+                gsap.to(gridBackdrop, {
+                    rotateX: 60,
+                    rotateY: 0,
+                    translateZ: -100,
+                    duration: 0.6,
+                    ease: "power2.out"
+                });
+            }
+            if (telemetryPointer) {
+                gsap.to(telemetryPointer, {
+                    opacity: 0,
+                    duration: 0.3
+                });
+            }
             addConsoleLine(`System idle. Telemetry calculations suspended.`, "text-cyan");
         });
     }
@@ -1591,24 +1751,69 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>
                 `,
                 script: () => {
+                    const wrapper = document.getElementById("canvas-wrapper");
                     const slider = document.getElementById("remover-swipe-slider");
                     const fg = document.getElementById("remover-fg");
                     const bar = document.getElementById("remover-bar");
                     const thumb = document.getElementById("remover-thumb");
                     const sampleBtns = document.querySelectorAll(".remover-sample-btn");
                     
-                    if (!slider || !fg || !bar || !thumb) return;
+                    if (!wrapper || !fg || !bar || !thumb) return;
+                    
+                    let isDragging = false;
                     
                     function updateClip(val) {
+                        val = Math.max(0, Math.min(100, parseFloat(val)));
                         fg.style.clipPath = `inset(0 0 0 ${val}%)`;
                         bar.style.left = `${val}%`;
                         thumb.style.left = `${val}%`;
-                        document.getElementById("swipe-pct").innerText = `${val}%`;
+                        if (slider) slider.value = val;
+                        document.getElementById("swipe-pct").innerText = `${Math.round(val)}%`;
                     }
                     
-                    slider.addEventListener("input", (e) => {
-                        updateClip(e.target.value);
+                    function handleMove(e) {
+                        const rect = wrapper.getBoundingClientRect();
+                        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                        const x = clientX - rect.left;
+                        const pct = ((x / rect.width) * 100).toFixed(1);
+                        updateClip(pct);
+                    }
+                    
+                    wrapper.addEventListener("mousedown", (e) => {
+                        isDragging = true;
+                        handleMove(e);
+                        wrapper.style.cursor = "ew-resize";
                     });
+                    
+                    window.addEventListener("mousemove", (e) => {
+                        if (!isDragging) return;
+                        handleMove(e);
+                    });
+                    
+                    window.addEventListener("mouseup", () => {
+                        isDragging = false;
+                        wrapper.style.cursor = "";
+                    });
+                    
+                    wrapper.addEventListener("touchstart", (e) => {
+                        isDragging = true;
+                        handleMove(e);
+                    });
+                    
+                    window.addEventListener("touchmove", (e) => {
+                        if (!isDragging) return;
+                        handleMove(e);
+                    });
+                    
+                    window.addEventListener("touchend", () => {
+                        isDragging = false;
+                    });
+                    
+                    if (slider) {
+                        slider.addEventListener("input", (e) => {
+                            updateClip(e.target.value);
+                        });
+                    }
                     
                     sampleBtns.forEach(btn => {
                         btn.addEventListener("click", (e) => {

@@ -266,14 +266,17 @@
                     <div class="lab-header reveal-on-scroll">
                         <span class="lab-eyebrow">LABORATORY EXPERIMENT</span>
                         <h2 class="section-title">INTERACTIVE DEV PLAYGROUND</h2>
-                        <p class="section-desc">A playground to manipulate 3D transform perspectives and inspect real-time viewport matrix calculations.</p>
+                        <p class="section-desc">Manipulate 3D transform perspectives and inspect real-time viewport matrix calculations.</p>
                     </div>
 
                     <div class="lab-grid">
                         <!-- Left Panel: Live Preview Card -->
                         <div class="lab-preview-panel">
+                            <!-- Premium 3D Perspective Warp Backdrop Grid -->
+                            <div class="lab-grid-backdrop" id="lab-grid-backdrop"></div>
                             <div class="lab-preview-card" id="lab-preview-card">
                                 <div class="lab-card-glare"></div>
+                                <div class="lab-telemetry-pointer" id="lab-telemetry-pointer"></div>
                                 <div class="lab-card-header">
                                     <div class="lab-card-chip"></div>
                                     <span class="lab-card-status">SYSTEM ACTIVE</span>
@@ -284,12 +287,20 @@
                                     <p class="lab-card-desc">Interactive Dev Card. Adjust the parameters on the right to tilt, scale, and recolor this container in 3D perspective space.</p>
                                     <div class="lab-card-specs">
                                         <div class="spec-item">
-                                            <span class="spec-label">COORDS:</span>
+                                            <span class="spec-label">COORDS</span>
                                             <span class="spec-val" id="lab-val-coords">X: 0.00, Y: 0.00</span>
                                         </div>
                                         <div class="spec-item">
-                                            <span class="spec-label">PERSPECTIVE:</span>
+                                            <span class="spec-label">PERSPECTIVE</span>
                                             <span class="spec-val" id="lab-val-persp">1000px</span>
+                                        </div>
+                                        <div class="spec-item">
+                                            <span class="spec-label">MAX TILT</span>
+                                            <span class="spec-val" id="lab-val-tilt">15deg</span>
+                                        </div>
+                                        <div class="spec-item">
+                                            <span class="spec-label">GLOW</span>
+                                            <span class="spec-val" id="lab-val-glow">0.40</span>
                                         </div>
                                     </div>
                                 </div>
@@ -317,12 +328,26 @@
                                     <input type="range" id="slider-glow" min="0" max="1" step="0.1" value="0.4" class="lab-slider">
                                 </div>
                                 <div class="control-row">
-                                    <label for="select-theme">Console Matrix Theme:</label>
-                                    <select id="select-theme" class="lab-select">
-                                        <option value="cyber-blue">Cyber Blue</option>
-                                        <option value="acid-green">Acid Green</option>
-                                        <option value="neon-violet">Neon Violet</option>
-                                    </select>
+                                    <label>Console Matrix Theme:</label>
+                                    <div class="custom-dropdown" id="select-theme-dropdown">
+                                        <div class="dropdown-trigger" id="select-theme-trigger">
+                                            <span class="theme-dot cyber-blue"></span>
+                                            <span class="trigger-text">Cyber Blue</span>
+                                            <span class="trigger-arrow">▼</span>
+                                        </div>
+                                        <div class="dropdown-menu" id="select-theme-menu">
+                                            <div class="dropdown-item active" data-value="cyber-blue">
+                                                <span class="theme-dot cyber-blue"></span> Cyber Blue
+                                            </div>
+                                            <div class="dropdown-item" data-value="acid-green">
+                                                <span class="theme-dot acid-green"></span> Acid Green
+                                            </div>
+                                            <div class="dropdown-item" data-value="neon-violet">
+                                                <span class="theme-dot neon-violet"></span> Neon Violet
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" id="select-theme" value="cyber-blue">
                                 </div>
                             </div>
 
