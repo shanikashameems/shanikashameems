@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shanika Shameem S | Generative AI Developer & Machine Learning Engineer</title>
+
+    <!-- Primary SEO Metadata -->
+    <meta name="description" content="Official portfolio of Shanika Shameem S, a Generative AI Developer and Machine Learning Engineer. Explore interactive 3D Web interfaces, secure agent pipelines, and real-time developer labs.">
+    <meta name="keywords" content="Shanika Shameem, shanikashameem, Shanika, shanikashameems, Shanika Shameem S, Generative AI Developer, ML Engineer, CSE student, 3D Portfolio, Machine Learning, Creative Developer, LLM pipelines">
+    <meta name="author" content="Shanika Shameem S">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="canonical" href="https://shanikashameems.vercel.app">
+
+    <!-- Open Graph (Facebook / LinkedIn) previews -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="Shanika Shameem Portfolio">
+    <meta property="og:title" content="Shanika Shameem S | Generative AI Developer & Machine Learning Engineer">
+    <meta property="og:description" content="Cinematic interactive portfolio showcasing high-end generative AI agent pipelines, machine learning models, and interactive WebGL/3D interfaces.">
+    <meta property="og:url" content="https://shanikashameems.vercel.app">
+    <meta property="og:image" content="https://shanikashameems.vercel.app/assets/hero-bg.jpg">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card previews -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Shanika Shameem S | Generative AI Developer & Machine Learning Engineer">
+    <meta name="twitter:description" content="Cinematic interactive portfolio showcasing high-end generative AI agent pipelines, machine learning models, and interactive WebGL/3D interfaces.">
+    <meta name="twitter:image" content="https://shanikashameems.vercel.app/assets/hero-bg.jpg">
+
+    <!-- JSON-LD Profile Schema for Google search snippets -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Shanika Shameem S",
+      "givenName": "Shanika",
+      "familyName": "Shameem",
+      "alternateName": "shanikashameem",
+      "url": "https://shanikashameems.vercel.app",
+      "sameAs": [
+        "https://github.com/shanikashameems",
+        "https://linkedin.com/in/shanikashameems",
+        "https://shanikashameems.github.io/"
+      ],
+      "jobTitle": "Generative AI Developer & Machine Learning Engineer",
+      "knowsAbout": [
+        "Generative AI",
+        "Machine Learning",
+        "Large Language Models",
+        "NLP",
+        "Creative Web Development",
+        "Vector Search RAG"
+      ],
+      "description": "Portfolio showcasing high-end Generative AI agent pipelines, machine learning models, and responsive 3D Web UI/UX systems."
+    }
+    </script>
+
+    <!-- Fonts: Outfit (headings) and Inter (body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- GSAP & ScrollTrigger Libraries for high-end pinning & scrubbing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+    
+
+       
+</head>
+<body>
+
+    <!-- Custom Glowing Cursor -->
+    <div class="custom-cursor" id="custom-cursor"></div>
+    <div class="custom-cursor-dot" id="custom-cursor-dot"></div>
+
+    <!-- Ambient Spotlights -->
+    <div class="ambient-glow" id="ambient-glow"></div>
+
+    <!-- 1. Custom Preloader Screen -->
+    <div class="loader-container" id="loader">
+        <div class="loader-content">
+            <h1 class="loader-logo">shanikashameems.</h1>
+            <div class="loader-progress-wrapper">
+                <div class="loader-bar-bg">
+                    <div class="loader-bar" id="loader-bar"></div>
+                </div>
+                <div class="loader-percent" id="loader-percent">0%</div>
+            </div>
+            <p class="loader-status" id="loader-status">Initializing Core AI Modules...</p>
+        </div>
+    </div>
+
+    <!-- Main Navigation Header: Lusion-style transparent pill layout -->
+    <header class="main-header transparent-nav hidden at-top" id="nav-header">
+        <a href="#hero" class="logo">shanikashameems.</a>
+        <div class="nav-pills" id="nav-pills">
+            <a href="#about" class="nav-pill-btn glass-pill magnetic">ABOUT •</a>
+            <a href="#projects" class="nav-pill-btn glass-pill magnetic">PROJECTS •</a>
+            <a href="#experience" class="nav-pill-btn glass-pill magnetic">EXPERIENCE •</a>
+            <a href="#contact" class="nav-pill-btn dark-pill magnetic">LET'S TALK ••</a>
+        </div>
+        <button class="mobile-nav-toggle" id="mobile-nav-toggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+
+    <!-- Main Content Wrapper -->
+    <main class="content-wrapper hidden" id="main-content">
+
+        <!-- 2. Hero Section -->
+        <section class="hero-section" id="hero">
+            <!-- 3D Vertical Stripes Background (S-H-A-N-I-K-A) -->
+            <div class="hero-stripes-container">
+                <div class="hero-stripe" data-letter="S">
+                    <div class="hero-stripe-inner">
+                        <div class="hero-stripe-front"></div>
+                        <div class="hero-stripe-back">
+                            <span class="hero-stripe-letter">S</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-stripe" data-letter="H">
+                    <div class="hero-stripe-inner">
+                        <div class="hero-stripe-front"></div>
+                        <div class="hero-stripe-back">
+                            <span class="hero-stripe-letter">H</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-stripe" data-letter="A">
+                    <div class="hero-stripe-inner">
+                        <div class="hero-stripe-front"></div>
+                        <div class="hero-stripe-back">
+                            <span class="hero-stripe-letter">A</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-stripe" data-letter="N">
+                    <div class="hero-stripe-inner">
+                        <div class="hero-stripe-front"></div>
+                        <div class="hero-stripe-back">
+                            <span class="hero-stripe-letter">N</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-stripe" data-letter="I">
+                    <div class="hero-stripe-inner">
+                        <div class="hero-stripe-front"></div>
+                        <div class="hero-stripe-back">
+                            <span class="hero-stripe-letter">I</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-stripe" data-letter="K">
+                    <div class="hero-stripe-inner">
+                        <div class="hero-stripe-front"></div>
+                        <div class="hero-stripe-back">
+                            <span class="hero-stripe-letter">K</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-stripe" data-letter="A">
+                    <div class="hero-stripe-inner">
+                        <div class="hero-stripe-front"></div>
+                        <div class="hero-stripe-back">
+                            <span class="hero-stripe-letter">A</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3D Floating Diary Button -->
+            <div class="diary-button-wrapper fade-up-init">
+                <a href="https://shanikashameems.github.io/" target="_blank" class="diary-3d-btn magnetic">
+                    <div class="btn-3d-layer btn-shadow"></div>
+                    <div class="btn-3d-layer btn-glow"></div>
+                    <div class="btn-3d-layer btn-base">
+                        <span class="diary-btn-text">EXPLORE MY DIARY</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="scroll-indicator fade-up-init">
+                <div class="scroll-mouse">
+                    <div class="scroll-wheel"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. About Me Section (Portrait 3D Reveal) -->
+        <section class="about-me-section" id="about">
+            <div class="container about-me-container">
+                <div class="about-content">
+                    <span class="about-eyebrow fade-up-init">Hey there!</span>
+                    <div class="about-im fade-up-init">I'm</div>
+                    <h1 class="about-name-hero fade-up-init">Shanika Shameem</h1>
+                    
+                    <div class="tagline-changer fade-up-init">
+                        <span class="changer-word active">ML Engineer</span>
+                        <span class="changer-word">Generative AI Developer</span>
+                        <span class="changer-word">Backend Developer</span>
+                        <span class="changer-word">AI Research Enthusiast</span>
+                    </div>
+                    
+                    <div class="about-text-block">
+                        <p class="about-text fade-up-init" style="margin-bottom: 1.5rem;">
+                            Computer Science student passionate about building intelligent software with Machine Learning and Generative AI. I transform ideas into AI-powered applications, exploring LLMs, RAG, Agentic AI, and scalable backend systems.
+                            
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Column 2 (Center): Portrait Wrapper anchored to bottom with name behind it -->
+                <div class="about-portrait-wrapper">
+                    <div class="about-name-watermark">SHANIKA SHAMEEM</div>
+                    <img src="assets/portrait.png" alt="Portrait" class="about-portrait-img">
+                </div>
+
+                <!-- Column 3 (Right): Flowy Skill Badges -->
+                <div class="about-skills-cloud">
+                    <span class="about-skills-title fade-up-init">ACTIVE MATRIX</span>
+                    <div class="skills-flowy-container">
+                        <div class="flowy-badge fade-up-init" style="--flow-delay: 0s; --flow-x: 18px; --flow-y: -25px;">Python</div>
+                        <div class="flowy-badge fade-up-init" style="--flow-delay: 1.2s; --flow-x: -22px; --flow-y: -15px;">Machine Learning</div>
+                        <div class="flowy-badge fade-up-init" style="--flow-delay: 0.6s; --flow-x: 20px; --flow-y: 22px;">Deep Learning</div>
+                        <div class="flowy-badge fade-up-init" style="--flow-delay: 2.0s; --flow-x: -16px; --flow-y: 28px;">LLMs</div>
+                        <div class="flowy-badge fade-up-init" style="--flow-delay: 0.9s; --flow-x: 24px; --flow-y: -12px;">RAG</div>
+                        <div class="flowy-badge fade-up-init" style="--flow-delay: 1.5s; --flow-x: -14px; --flow-y: -20px;">LangChain</div>
+                        <div class="flowy-badge fade-up-init" style="--flow-delay: 2.5s; --flow-x: 14px; --flow-y: 24px;">LangGraph</div>
+                        <div class="flowy-badge fade-up-init" style="--flow-delay: 0.3s; --flow-x: -20px; --flow-y: 18px;">FastAPI</div>
+                        <div class="flowy-badge fade-up-init" style="--flow-delay: 1.8s; --flow-x: 22px; --flow-y: -8px;">SQL</div>
+                        <div class="flowy-badge fade-up-init" style="--flow-delay: 0.7s; --flow-x: -12px; --flow-y: 15px;">Git</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Combined Wrapper for Background Blue Wire (Spans across Projects and Experience) -->
+        <div class="wire-container-wrapper">
+            
+            <!-- Glowing Blue Wire Background element -->
+            <div class="bg-wire-container">
+                <svg class="bg-wire-svg" viewBox="0 0 100 2000" preserveAspectRatio="none">
+                    <path id="blue-wire-path" pathLength="100" d="M 0 0 C 30 100, 70 200, 50 300 C 30 400, 20 500, 50 600 C 80 700, 70 800, 50 900 C 30 1000, 20 1100, 50 1200 C 80 1300, 70 1400, 50 1500 C 30 1600, 20 1700, 50 1800 C 70 1900, 90 1950, 100 2000" fill="none" stroke="#387bf6" stroke-width="3" vector-effect="non-scaling-stroke"></path>
+                    <path id="pulse-wire-path" pathLength="100" d="M 0 0 C 30 100, 70 200, 50 300 C 30 400, 20 500, 50 600 C 80 700, 70 800, 50 900 C 30 1000, 20 1100, 50 1200 C 80 1300, 70 1400, 50 1500 C 30 1600, 20 1700, 50 1800 C 70 1900, 90 1950, 100 2000" fill="none" stroke="#00f0ff" stroke-width="4" vector-effect="non-scaling-stroke" stroke-linecap="round"></path>
+                    <defs>
+                        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                            <feGaussianBlur id="wire-blur" stdDeviation="3" result="coloredBlur"/>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                    </defs>
+                </svg>
+            </div>
+
+            <!-- Interactive Engineering Lab (Component Sandbox & Dev Console) -->
+            <section class="interactive-lab-section" id="interactive-lab">
+                <div class="container lab-container">
+                    <div class="lab-header reveal-on-scroll">
+                        <span class="lab-eyebrow">LABORATORY EXPERIMENT</span>
+                        <h2 class="section-title">INTERACTIVE DEV PLAYGROUND</h2>
+                        <p class="section-desc">A playground to manipulate 3D transform perspectives and inspect real-time viewport matrix calculations.</p>
+                    </div>
+
+                    <div class="lab-grid">
+                        <!-- Left Panel: Live Preview Card -->
+                        <div class="lab-preview-panel">
+                            <div class="lab-preview-card" id="lab-preview-card">
+                                <div class="lab-card-glare"></div>
+                                <div class="lab-card-header">
+                                    <div class="lab-card-chip"></div>
+                                    <span class="lab-card-status">SYSTEM ACTIVE</span>
+                                </div>
+                                <div class="lab-card-body">
+                                    <h3 class="lab-card-title">SHANIKA'S DEV PROTOCOL</h3>
+                                    <div class="lab-card-bar"></div>
+                                    <p class="lab-card-desc">Interactive Dev Card. Adjust the parameters on the right to tilt, scale, and recolor this container in 3D perspective space.</p>
+                                    <div class="lab-card-specs">
+                                        <div class="spec-item">
+                                            <span class="spec-label">COORDS:</span>
+                                            <span class="spec-val" id="lab-val-coords">X: 0.00, Y: 0.00</span>
+                                        </div>
+                                        <div class="spec-item">
+                                            <span class="spec-label">PERSPECTIVE:</span>
+                                            <span class="spec-val" id="lab-val-persp">1000px</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="lab-card-footer">
+                                    <span class="lab-card-badge">VER 2.5.0</span>
+                                    <span class="lab-card-serial">SH-8822</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Panel: Sliders & Console -->
+                        <div class="lab-control-panel">
+                            <div class="lab-controls">
+                                <h4 class="control-panel-title">PARAMETER CONTROLS</h4>
+                                <div class="control-row">
+                                    <label for="slider-persp">Perspective Depth: <span id="label-persp">1000px</span></label>
+                                    <input type="range" id="slider-persp" min="400" max="2500" value="1000" class="lab-slider">
+                                </div>
+                                <div class="control-row">
+                                    <label for="slider-tilt">Max Tilt Bound: <span id="label-tilt">15deg</span></label>
+                                    <input type="range" id="slider-tilt" min="5" max="35" value="15" class="lab-slider">
+                                </div>
+                                <div class="control-row">
+                                    <label for="slider-glow">Glow Intensity: <span id="label-glow">0.4</span></label>
+                                    <input type="range" id="slider-glow" min="0" max="1" step="0.1" value="0.4" class="lab-slider">
+                                </div>
+                                <div class="control-row">
+                                    <label for="select-theme">Console Matrix Theme:</label>
+                                    <select id="select-theme" class="lab-select">
+                                        <option value="cyber-blue">Cyber Blue</option>
+                                        <option value="acid-green">Acid Green</option>
+                                        <option value="neon-violet">Neon Violet</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="lab-console">
+                                <div class="console-header">
+                                    <span class="console-dot red"></span>
+                                    <span class="console-dot yellow"></span>
+                                    <span class="console-dot green"></span>
+                                    <span class="console-title">transform_debugger.sh</span>
+                                </div>
+                                <div class="console-body" id="console-body">
+                                    <div class="console-line text-cyan">[SYSTEM] Initializing 3D transform debugger...</div>
+                                    <div class="console-line text-cyan">[SYSTEM] Ready. Hover over the left card to capture telemetry log.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. Projects Section (Featured Work) -->
+            <section class="projects-section" id="projects">
+                <div class="container projects-container">
+                    <div class="projects-header reveal-on-scroll">
+                        <div class="projects-title-wrapper">
+                            <h2 class="projects-section-title">Featured Work</h2>
+                        </div>
+                    </div>
+
+                    <div class="projects-grid">
+                        <!-- Project 1: Sentinel AI -->
+                        <div class="project-card" data-project-index="0">
+                            <div class="project-card-inner">
+                                <!-- Front of Card -->
+                                <div class="project-card-front">
+                                    <div class="project-image-wrapper">
+                                        <img src="assets/project_sentinel.png" alt="Sentinel AI" class="project-img">
+                                        <div class="project-glare"></div>
+                                    </div>
+                                    <div class="project-meta">
+                                        <span class="project-tags">REACT NATIVE • NODE.JS • SOCKET.IO • EXPO</span>
+                                        <h3 class="project-name">SENTINEL AI</h3>
+                                        <p class="project-card-summary">Privacy-first Real-Time Messaging</p>
+                                    </div>
+                                </div>
+                                <!-- Back of Card -->
+                                <div class="project-card-back">
+                                    <h3 class="back-title">SENTINEL AI</h3>
+                                    <div class="back-divider"></div>
+                                    <p class="project-desc">A secure messaging application built for private communication.</p>
+                                    
+                                    <div class="project-back-grid">
+                                        <div class="project-back-tech">
+                                            <span class="back-section-label">Core Tech</span>
+                                            <ul class="tech-stack-list">
+                                                <li class="tech-stack-item"><strong>React Native & Expo</strong> Cross-platform mobile shell</li>
+                                                <li class="tech-stack-item"><strong>Socket.IO</strong> Real-time duplex event streaming</li>
+                                                <li class="tech-stack-item"><strong>Node.js & Express</strong> High-throughput message dispatch</li>
+                                            </ul>
+                                        </div>
+                                        <div class="project-trade-offs">
+                                            <span class="back-section-label">Challenge & Trade-Offs</span>
+                                            <p class="trade-off-text"><strong>Challenge:</strong> Preventing screenshot capture and leakage of local encryption handshake vectors.<br><strong>Trade-Off:</strong> Processed packets exclusively in transient memory, prioritizing database anonymity over long-term chat persistence.</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="project-actions">
+                                        <a href="https://github.com/shanikashameems" target="_blank" class="project-link btn btn-secondary magnetic">
+                                            <span>Explore Repo</span>
+                                        </a>
+                                        <button class="project-sandbox-btn btn btn-primary magnetic" data-project-index="0">
+                                            <span>Live Sandbox</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project 2: LinkedIn AI Writer -->
+                        <div class="project-card" data-project-index="1">
+                            <div class="project-card-inner">
+                                <!-- Front of Card -->
+                                <div class="project-card-front">
+                                    <div class="project-image-wrapper">
+                                        <img src="assets/project_linkedin.png" alt="LinkedIn AI Writer" class="project-img">
+                                        <div class="project-glare"></div>
+                                    </div>
+                                    <div class="project-meta">
+                                        <span class="project-tags">LANGCHAIN • LANGGRAPH • RAG • STREAMLIT</span>
+                                        <h3 class="project-name">LINKEDIN AI WRITER</h3>
+                                        <p class="project-card-summary">AI-Powered Content Generation</p>
+                                    </div>
+                                </div>
+                                <!-- Back of Card -->
+                                <div class="project-card-back">
+                                    <h3 class="back-title">LINKEDIN AI WRITER</h3>
+                                    <div class="back-divider"></div>
+                                    <p class="project-desc">An intelligent writing assistant that creates professional LinkedIn posts from simple ideas.</p>
+                                    
+                                    <div class="project-back-grid">
+                                        <div class="project-back-tech">
+                                            <span class="back-section-label">Core Tech</span>
+                                            <ul class="tech-stack-list">
+                                                <li class="tech-stack-item"><strong>LangChain & LangGraph</strong> Multi-agent system routing</li>
+                                                <li class="tech-stack-item"><strong>RAG Vector Indexes</strong> Industry context retrieval</li>
+                                                <li class="tech-stack-item"><strong>Streamlit</strong> Responsive front-end workspace</li>
+                                            </ul>
+                                        </div>
+                                        <div class="project-trade-offs">
+                                            <span class="back-section-label">Challenge & Trade-Offs</span>
+                                            <p class="trade-off-text"><strong>Challenge:</strong> Generating high-engagement posts using recursive multi-agent workflows under tight latency constraints.<br><strong>Trade-Off:</strong> Bound sub-agents to strict localized context windows, speeding up text generation by 40%.</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="project-actions">
+                                        <a href="https://github.com/shanikashameems" target="_blank" class="project-link btn btn-secondary magnetic">
+                                            <span>Explore Repo</span>
+                                        </a>
+                                        <button class="project-sandbox-btn btn btn-primary magnetic" data-project-index="1">
+                                            <span>Live Sandbox</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project 3: AI Background Remover -->
+                        <div class="project-card" data-project-index="2">
+                            <div class="project-card-inner">
+                                <!-- Front of Card -->
+                                <div class="project-card-front">
+                                    <div class="project-image-wrapper">
+                                        <img src="assets/project_bgremover.png" alt="AI Background Remover" class="project-img">
+                                        <div class="project-glare"></div>
+                                    </div>
+                                    <div class="project-meta">
+                                        <span class="project-tags">PYTHON • PYTORCH • SAM • FASTAPI</span>
+                                        <h3 class="project-name">AI BACKGROUND REMOVER</h3>
+                                        <p class="project-card-summary">AI Image Segmentation</p>
+                                    </div>
+                                </div>
+                                <!-- Back of Card -->
+                                <div class="project-card-back">
+                                    <h3 class="back-title">BACKGROUND REMOVER</h3>
+                                    <div class="back-divider"></div>
+                                    <p class="project-desc">Automatically removes image backgrounds using deep learning segmentation models.</p>
+                                    
+                                    <div class="project-back-grid">
+                                        <div class="project-back-tech">
+                                            <span class="back-section-label">Core Tech</span>
+                                            <ul class="tech-stack-list">
+                                                <li class="tech-stack-item"><strong>PyTorch & SAM</strong> Segment Anything AI model execution</li>
+                                                <li class="tech-stack-item"><strong>FastAPI</strong> Async background task image endpoint</li>
+                                                <li class="tech-stack-item"><strong>Python Pillow</strong> Real-time alpha layer compositing</li>
+                                            </ul>
+                                        </div>
+                                        <div class="project-trade-offs">
+                                            <span class="back-section-label">Challenge & Trade-Offs</span>
+                                            <p class="trade-off-text"><strong>Challenge:</strong> Processing memory-heavy segmentation model tensors on standard, non-GPU hosting environments.<br><strong>Trade-Off:</strong> Offloaded segment tasks to an asynchronous queue, trading 1.2s delay to prevent request thread blocks.</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="project-actions">
+                                        <a href="https://github.com/shanikashameems" target="_blank" class="project-link btn btn-secondary magnetic">
+                                            <span>Explore Repo</span>
+                                        </a>
+                                        <button class="project-sandbox-btn btn btn-primary magnetic" data-project-index="2">
+                                            <span>Live Sandbox</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project 4: QR Studio -->
+                        <div class="project-card" data-project-index="3">
+                            <div class="project-card-inner">
+                                <!-- Front of Card -->
+                                <div class="project-card-front">
+                                    <div class="project-image-wrapper">
+                                        <img src="assets/project_qrcode.png" alt="QR Studio" class="project-img">
+                                        <div class="project-glare"></div>
+                                    </div>
+                                    <div class="project-meta">
+                                        <span class="project-tags">HTML • CSS • JAVASCRIPT • QR API</span>
+                                        <h3 class="project-name">QR STUDIO</h3>
+                                        <p class="project-card-summary">Instant QR Generation</p>
+                                    </div>
+                                </div>
+                                <!-- Back of Card -->
+                                <div class="project-card-back">
+                                    <h3 class="back-title">QR STUDIO</h3>
+                                    <div class="back-divider"></div>
+                                    <p class="project-desc">A lightweight web application for creating custom QR codes instantly.</p>
+                                    
+                                    <div class="project-back-grid">
+                                        <div class="project-back-tech">
+                                            <span class="back-section-label">Core Tech</span>
+                                            <ul class="tech-stack-list">
+                                                <li class="tech-stack-item"><strong>HTML5 & CSS3</strong> Responsive grid layout</li>
+                                                <li class="tech-stack-item"><strong>Vanilla JavaScript</strong> Client-side events & state</li>
+                                                <li class="tech-stack-item"><strong>QR Canvas Engine</strong> Client vector path plotting</li>
+                                            </ul>
+                                        </div>
+                                        <div class="project-trade-offs">
+                                            <span class="back-section-label">Challenge & Trade-Offs</span>
+                                            <p class="trade-off-text"><strong>Challenge:</strong> Guaranteeing high-contrast scannability under dark-mode filters and low-lux camera environments.<br><strong>Trade-Off:</strong> Locked color inputs to mathematically contrast-safe hex pairings, restricting custom color palettes.</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="project-actions">
+                                        <a href="https://github.com/shanikashameems" target="_blank" class="project-link btn btn-secondary magnetic">
+                                            <span>Explore Repo</span>
+                                        </a>
+                                        <button class="project-sandbox-btn btn btn-primary magnetic" data-project-index="3">
+                                            <span>Live Sandbox</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project 5: File Morpher -->
+                        <div class="project-card" data-project-index="4">
+                            <div class="project-card-inner">
+                                <!-- Front of Card -->
+                                <div class="project-card-front">
+                                    <div class="project-image-wrapper">
+                                        <img src="assets/project_file_morpher.png" alt="File Morpher" class="project-img">
+                                        <div class="project-glare"></div>
+                                    </div>
+                                    <div class="project-meta">
+                                        <span class="project-tags">PYTHON • STREAMLIT • PILLOW • PYPDF</span>
+                                        <h3 class="project-name">FILE MORPHER</h3>
+                                        <p class="project-card-summary">Universal File Converter</p>
+                                    </div>
+                                </div>
+                                <!-- Back of Card -->
+                                <div class="project-card-back">
+                                    <h3 class="back-title">FILE MORPHER</h3>
+                                    <div class="back-divider"></div>
+                                    <p class="project-desc">A web application that converts files between multiple formats through a simple interface.</p>
+                                    
+                                    <div class="project-back-grid">
+                                        <div class="project-back-tech">
+                                            <span class="back-section-label">Core Tech</span>
+                                            <ul class="tech-stack-list">
+                                                <li class="tech-stack-item"><strong>Python Pillow</strong> Multi-format raster converters</li>
+                                                <li class="tech-stack-item"><strong>PyPDF Core</strong> Vector document parser and compiler</li>
+                                                <li class="tech-stack-item"><strong>Streamlit workspace</strong> Interactive user buffer control</li>
+                                            </ul>
+                                        </div>
+                                        <div class="project-trade-offs">
+                                            <span class="back-section-label">Challenge & Trade-Offs</span>
+                                            <p class="trade-off-text"><strong>Challenge:</strong> Mitigating RAM allocation spikes during simultaneous large-batch image and document parsing.<br><strong>Trade-Off:</strong> Implemented linear file stream buffering, capping active worker RAM to 128MB at a 15% execution latency cost.</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="project-actions">
+                                        <a href="https://github.com/shanikashameems" target="_blank" class="project-link btn btn-secondary magnetic">
+                                            <span>Explore Repo</span>
+                                        </a>
+                                        <button class="project-sandbox-btn btn btn-primary magnetic" data-project-index="4">
+                                            <span>Live Sandbox</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Section Removed -->
+
+            <!-- 5. Experience Section -->
+            <section class="experience-section" id="experience">
+                <div class="container">
+                    <h2 class="section-title reveal-on-scroll">PROFESSIONAL EXPERIENCE</h2>
+                    <p class="section-desc reveal-on-scroll">A journey of continuous learning, innovation, and industry contribution.</p>
+                    
+                                        <div class="timeline">
+                        <!-- Experience Item 0: Noobtron Solutions -->
+                        <div class="timeline-item">
+                            <div class="experience-card-3d" data-exp-id="4">
+                                <div class="experience-card-inner">
+                                    <!-- Front Face -->
+                                    <div class="experience-card-front">
+                                        <div class="exp-badge">Jul 2026 • Present</div>
+                                        <div class="exp-meta">
+                                            <span class="exp-role">AI Developer Intern</span>
+                                            <span class="exp-org">Noobtron Solutions Pvt Ltd</span>
+                                        </div>
+                                        <p class="exp-short">"Pioneering intelligent software solutions."</p>
+                                    </div>
+                                    <!-- Back Face -->
+                                    <div class="experience-card-back">
+                                        <h3 class="exp-role-back">AI Developer Intern</h3>
+                                        <div class="back-divider"></div>
+                                        <p class="exp-detailed">At Noobtron Solutions, I build AI integrations, orchestrate LLM workflows, and optimize backend pipelines to deliver intelligent, scalable software solutions.</p>
+                                        
+                                        <div class="exp-back-highlights">
+                                            <span class="feat-header">Highlights:</span>
+                                            <ul class="exp-highlights-list">
+                                                <li>Built agentic AI workflows</li>
+                                                <li>Integrated RAG pipelines</li>
+                                                <li>Designed backend API nodes</li>
+                                                <li>Optimized LLM responses</li>
+                                            </ul>
+                                        </div>
+                                        
+                                        <div class="exp-tech-row">
+                                            <span class="tech-row-label">Tech & Tools:</span>
+                                            <p class="tech-row-values">Python • LangChain • FastAPI • LLMs • RAG • Git</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Experience Item 1: ByteTree -->
+                        <div class="timeline-item">
+                            <div class="experience-card-3d" data-exp-id="1">
+                                <div class="experience-card-inner">
+                                    <!-- Front Face -->
+                                    <div class="experience-card-front">
+                                        <div class="exp-badge">Mar 2025 • Present</div>
+                                        <div class="exp-meta">
+                                            <span class="exp-role">Python Tutor & Developer</span>
+                                            <span class="exp-org">ByteTree</span>
+                                        </div>
+                                        <p class="exp-short">"Teaching. Building. Innovating."</p>
+                                    </div>
+                                    <!-- Back Face -->
+                                    <div class="experience-card-back">
+                                        <h3 class="exp-role-back">Python Tutor & Developer</h3>
+                                        <div class="back-divider"></div>
+                                        <p class="exp-detailed">At ByteTree, I design and deliver industry-focused courses in Python, AI, and Machine Learning while developing practical learning resources and mentoring students through real-world projects.</p>
+                                        
+                                        <div class="exp-back-highlights">
+                                            <span class="feat-header">Highlights:</span>
+                                            <ul class="exp-highlights-list">
+                                                <li>Designed AI & Python curriculum</li>
+                                                <li>Mentored 200+ learners</li>
+                                                <li>Built hands-on coding projects</li>
+                                                <li>Simplified complex AI concepts</li>
+                                            </ul>
+                                        </div>
+                                        
+                                        <div class="exp-tech-row">
+                                            <span class="tech-row-label">Tech & Tools:</span>
+                                            <p class="tech-row-values">Python • AI • Machine Learning • Teaching • Curriculum Design</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Experience Item 2: AceWix -->
+                        <div class="timeline-item">
+                            <div class="experience-card-3d" data-exp-id="2">
+                                <div class="experience-card-inner">
+                                    <!-- Front Face -->
+                                    <div class="experience-card-front">
+                                        <div class="exp-badge">Jul 2025 • Nov 2025</div>
+                                        <div class="exp-meta">
+                                            <span class="exp-role">Mobile App Developer Intern</span>
+                                            <span class="exp-org">AceWix</span>
+                                        </div>
+                                        <p class="exp-short">"Building mobile experiences."</p>
+                                    </div>
+                                    <!-- Back Face -->
+                                    <div class="experience-card-back">
+                                        <h3 class="exp-role-back">Mobile App Developer Intern</h3>
+                                        <div class="back-divider"></div>
+                                        <p class="exp-detailed">Contributed to cross-platform mobile application development using modern frameworks while working in an agile development environment.</p>
+                                        
+                                        <div class="exp-back-highlights">
+                                            <span class="feat-header">Highlights:</span>
+                                            <ul class="exp-highlights-list">
+                                                <li>Developed application features</li>
+                                                <li>Fixed bugs and optimized performance</li>
+                                                <li>Worked with React Native & Expo</li>
+                                                <li>Followed real-world development workflows</li>
+                                            </ul>
+                                        </div>
+                                        
+                                        <div class="exp-tech-row">
+                                            <span class="tech-row-label">Tech & Tools:</span>
+                                            <p class="tech-row-values">React Native • Expo • TypeScript • Git</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Experience Item 3: Feather Softwares -->
+                        <div class="timeline-item">
+                            <div class="experience-card-3d" data-exp-id="3">
+                                <div class="experience-card-inner">
+                                    <!-- Front Face -->
+                                    <div class="experience-card-front">
+                                        <div class="exp-badge">Jan 2025 • Feb 2025</div>
+                                        <div class="exp-meta">
+                                            <span class="exp-role">Machine Learning Intern</span>
+                                            <span class="exp-org">Feather Softwares</span>
+                                        </div>
+                                        <p class="exp-short">"Turning data into insights."</p>
+                                    </div>
+                                    <!-- Back Face -->
+                                    <div class="experience-card-back">
+                                        <h3 class="exp-role-back">Machine Learning Intern</h3>
+                                        <div class="back-divider"></div>
+                                        <p class="exp-detailed">Worked on machine learning projects involving data preprocessing, visualization, model training, and performance evaluation using real-world datasets.</p>
+                                        
+                                        <div class="exp-back-highlights">
+                                            <span class="feat-header">Highlights:</span>
+                                            <ul class="exp-highlights-list">
+                                                <li>Data preprocessing</li>
+                                                <li>Model training</li>
+                                                <li>Data visualization</li>
+                                                <li>Predictive analytics</li>
+                                            </ul>
+                                        </div>
+                                        
+                                        <div class="exp-tech-row">
+                                            <span class="tech-row-label">Tech & Tools:</span>
+                                            <p class="tech-row-values">Python • Pandas • NumPy • Scikit-learn • Matplotlib</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="timeline-closing reveal-on-scroll" style="text-align: center; font-style: italic; font-size: 1.15rem; opacity: 0.8; margin-top: 40px;">Each experience has contributed to my growth as a developer, educator, and problem solver, shaping the skills and perspective I bring to every project.</p>
+                </div>
+            </section>
+
+            <!-- 6. Skills Section -->
+            <section class="skills-section" id="skills">
+                <div class="container">
+                    <h2 class="section-title reveal-on-scroll">CORE SKILLS</h2>
+                    <p class="section-desc reveal-on-scroll">Active matrix of technologies, frameworks, and core methodologies.</p>
+                    
+                                                            <div class="skills-grid">
+                        <!-- Skill 1: ML -->
+                        <div class="skill-card-3d" data-skill-id="1">
+                            <div class="skill-card-inner">
+                                                                <div class="skill-card-front">
+                                    <span class="skill-badge-issuer">Machine Learning</span>
+                                    <h3 class="skill-title">Machine Learning</h3>
+                                    <p class="skill-short">Learning from data. Solving real problems.</p>
+                                    <div class="skill-front-tags">
+                                        <span>Python</span>
+                                        <span>Scikit-learn</span>
+                                        <span>Pandas</span>
+                                        <span>NumPy</span>
+                                    </div>
+                                </div>
+                                <div class="skill-card-back">
+                                    <h3 class="skill-title-back">Machine Learning</h3>
+                                    <div class="back-divider"></div>
+                                    <p class="skill-detailed">Machine Learning is where my interest in AI began. I enjoy working with data, building predictive models, and experimenting with different algorithms to create solutions that are both practical and reliable.</p>
+                                    <div class="skill-tech-row">
+                                        <span class="tech-row-label">Tech Stack:</span>
+                                        <p class="tech-row-values">Python • Scikit-learn • Pandas • NumPy • Matplotlib</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Skill 2: Gen AI -->
+                        <div class="skill-card-3d" data-skill-id="2">
+                            <div class="skill-card-inner">
+                                                                <div class="skill-card-front">
+                                    <span class="skill-badge-issuer">Generative AI</span>
+                                    <h3 class="skill-title">Generative AI</h3>
+                                    <p class="skill-short">Building applications that think a little smarter.</p>
+                                    <div class="skill-front-tags">
+                                        <span>LLMs</span>
+                                        <span>LangChain</span>
+                                        <span>LangGraph</span>
+                                        <span>RAG</span>
+                                    </div>
+                                </div>
+                                <div class="skill-card-back">
+                                    <h3 class="skill-title-back">Generative AI</h3>
+                                    <div class="back-divider"></div>
+                                    <p class="skill-detailed">I love exploring how Large Language Models can make everyday tasks easier. From RAG pipelines to AI agents, I enjoy creating applications that feel intelligent, useful, and intuitive.</p>
+                                    <div class="skill-tech-row">
+                                        <span class="tech-row-label">Tech Stack:</span>
+                                        <p class="tech-row-values">LLMs • LangChain • LangGraph • RAG • Prompt Engineering</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Skill 3: Backend Development -->
+                        <div class="skill-card-3d" data-skill-id="3">
+                            <div class="skill-card-inner">
+                                                                <div class="skill-card-front">
+                                    <span class="skill-badge-issuer">Backend Development</span>
+                                    <h3 class="skill-title">Backend Development</h3>
+                                    <p class="skill-short">The engine behind every great application.</p>
+                                    <div class="skill-front-tags">
+                                        <span>FastAPI</span>
+                                        <span>Node.js</span>
+                                        <span>REST APIs</span>
+                                        <span>SQL</span>
+                                    </div>
+                                </div>
+                                <div class="skill-card-back">
+                                    <h3 class="skill-title-back">Backend Development</h3>
+                                    <div class="back-divider"></div>
+                                    <p class="skill-detailed">I enjoy building the logic that keeps applications running smoothly. Whether it's designing APIs, connecting databases, or integrating AI models, I like creating systems that are clean, scalable, and dependable.</p>
+                                    <div class="skill-tech-row">
+                                        <span class="tech-row-label">Tech Stack:</span>
+                                        <p class="tech-row-values">Python • FastAPI • Node.js • REST APIs • SQL</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Skill 4: Mobile Development -->
+                        <div class="skill-card-3d" data-skill-id="4">
+                            <div class="skill-card-inner">
+                                                                <div class="skill-card-front">
+                                    <span class="skill-badge-issuer">Mobile Development</span>
+                                    <h3 class="skill-title">Mobile Development</h3>
+                                    <p class="skill-short">Bringing ideas to users' fingertips.</p>
+                                    <div class="skill-front-tags">
+                                        <span>React Native</span>
+                                        <span>Expo</span>
+                                        <span>JS/TS</span>
+                                    </div>
+                                </div>
+                                <div class="skill-card-back">
+                                    <h3 class="skill-title-back">Mobile Development</h3>
+                                    <div class="back-divider"></div>
+                                    <p class="skill-detailed">Building mobile applications has taught me how important performance and user experience are. I enjoy creating responsive, cross-platform apps that are simple, functional, and enjoyable to use.</p>
+                                    <div class="skill-tech-row">
+                                        <span class="tech-row-label">Tech Stack:</span>
+                                        <p class="tech-row-values">React Native • Expo • JavaScript • TypeScript</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Skill 5: Data Analytics -->
+                        <div class="skill-card-3d" data-skill-id="5">
+                            <div class="skill-card-inner">
+                                                                <div class="skill-card-front">
+                                    <span class="skill-badge-issuer">Data Analytics</span>
+                                    <h3 class="skill-title">Data Analytics</h3>
+                                    <p class="skill-short">Every dataset has a story to tell.</p>
+                                    <div class="skill-front-tags">
+                                        <span>Pandas</span>
+                                        <span>NumPy</span>
+                                        <span>Matplotlib</span>
+                                        <span>SQL</span>
+                                    </div>
+                                </div>
+                                <div class="skill-card-back">
+                                    <h3 class="skill-title-back">Data Analytics</h3>
+                                    <div class="back-divider"></div>
+                                    <p class="skill-detailed">I enjoy exploring data, finding patterns, and turning numbers into meaningful insights through analysis and visualization. It's often the first step toward building smarter AI solutions.</p>
+                                    <div class="skill-tech-row">
+                                        <span class="tech-row-label">Tech Stack:</span>
+                                        <p class="tech-row-values">Pandas • NumPy • Matplotlib • Power BI • SQL</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Skill 6: Tools & Workflow -->
+                        <div class="skill-card-3d" data-skill-id="6">
+                            <div class="skill-card-inner">
+                                                                <div class="skill-card-front">
+                                    <span class="skill-badge-issuer">Developer Toolkit</span>
+                                    <h3 class="skill-title">Developer Toolkit</h3>
+                                    <p class="skill-short">The tools that help me build.</p>
+                                    <div class="skill-front-tags">
+                                        <span>Git/GitHub</span>
+                                        <span>VS Code</span>
+                                        <span>Docker</span>
+                                    </div>
+                                </div>
+                                <div class="skill-card-back">
+                                    <h3 class="skill-title-back">Developer Toolkit</h3>
+                                    <div class="back-divider"></div>
+                                    <p class="skill-detailed">From writing code to collaborating on projects, these are the tools I use every day to keep my workflow organized, efficient, and enjoyable.</p>
+                                    <div class="skill-tech-row">
+                                        <span class="tech-row-label">Tools:</span>
+                                        <p class="tech-row-values">Git • GitHub • VS Code • Streamlit • Google Colab • Docker</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Skill 7: Leadership & Soft Skills -->
+                        <div class="skill-card-3d" data-skill-id="7">
+                            <div class="skill-card-inner">
+                                                                <div class="skill-card-front">
+                                    <span class="skill-badge-issuer">Leadership & Soft Skills</span>
+                                    <h3 class="skill-title">Leadership & Soft Skills</h3>
+                                    <p class="skill-short">Learning together, building together.</p>
+                                    <div class="skill-front-tags">
+                                        <span>Mentoring</span>
+                                        <span>Teamwork</span>
+                                        <span>Growth</span>
+                                    </div>
+                                </div>
+                                <div class="skill-card-back">
+                                    <h3 class="skill-title-back">Leadership & Soft Skills</h3>
+                                    <div class="back-divider"></div>
+                                    <p class="skill-detailed" style="font-size: 0.8rem; margin-bottom: 8px;">One of the things I enjoy most is sharing what I know. Through teaching, internships, and team projects, I've learned that good software is built through collaboration, communication, and continuous learning.</p>
+                                    
+                                    <div class="leadership-categories-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; text-align: left; margin-bottom: 5px;">
+                                        <div class="lead-cat-item" style="font-size: 0.72rem; line-height: 1.2;">
+                                            <strong style="color: var(--accent-cyan) !important;">Communication:</strong> Explaining technical concepts simply. (Public Speaking, Presentations, Knowledge Sharing)
+                                        </div>
+                                        <div class="lead-cat-item" style="font-size: 0.72rem; line-height: 1.2;">
+                                            <strong style="color: var(--accent-cyan) !important;">Leadership:</strong> Mentoring students, team leading, project planning.
+                                        </div>
+                                        <div class="lead-cat-item" style="font-size: 0.72rem; line-height: 1.2;">
+                                            <strong style="color: var(--accent-cyan) !important;">Collaboration:</strong> Teamwork, cross-functional syncing, peer mentoring.
+                                        </div>
+                                        <div class="lead-cat-item" style="font-size: 0.72rem; line-height: 1.2;">
+                                            <strong style="color: var(--accent-cyan) !important;">Problem Solving:</strong> Critical thinking, research mindset, detail-oriented.
+                                        </div>
+                                    </div>
+                                    <div class="skill-tech-row" style="padding-top: 5px; border-top: 1px solid rgba(250, 248, 244, 0.08); margin-top: auto;">
+                                        <span class="tech-row-label">Growth:</span>
+                                        <p class="tech-row-values" style="font-size: 0.72rem;">Adaptability • Continuous Learning • Time Management</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+                        <!-- 7. Education Section -->
+            <section class="education-section" id="education">
+                <div class="container">
+                    <h2 class="section-title reveal-on-scroll">ACADEMIC JOURNEY</h2>
+                    <p class="section-desc reveal-on-scroll">Where It Started</p>
+                    
+                    <div class="education-card-3d">
+                        <div class="education-card-inner">
+                            <!-- Front of Card -->
+                            <div class="education-card-front">
+                                <div class="education-card-badge">Foundation</div>
+                                <div class="education-card-main">
+                                    <span class="education-degree">Bachelor of Engineering</span>
+                                    <span class="education-inst">Computer Science & Engineering</span>
+                                </div>
+                                <p class="edu-short">Noorul Islam Centre for Higher Education</p>
+                                <div class="education-card-footer">
+                                    <span class="education-period">2022 • 2026</span>
+                                </div>
+                            </div>
+                            <!-- Back of Card -->
+                            <div class="education-card-back">
+                                <h3 class="edu-back-title">Bachelor of Engineering</h3>
+                                <div class="back-divider"></div>
+                                <p class="edu-back-desc">Pursued a Bachelor's degree in Computer Science with a strong focus on Artificial Intelligence, Machine Learning, Software Engineering, and scalable application development.</p>
+                                <div class="edu-back-highlights">
+                                    <span class="feat-header">Key Areas:</span>
+                                    <ul class="edu-highlights-list">
+                                        <li>Artificial Intelligence</li>
+                                        <li>Machine Learning</li>
+                                        <li>Data Structures & Algorithms</li>
+                                        <li>Database Systems</li>
+                                        <li>Software Engineering</li>
+                                        <li>Operating Systems</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 8. Certifications Section (connect) -->
+            <section class="connect-section" id="connect">
+                <div class="container">
+                    <h2 class="section-title reveal-on-scroll">CERTIFICATIONS</h2>
+                    <p class="section-desc reveal-on-scroll">Industry credentials, specializations, and validated technical proficiencies.</p>
+                    
+                                                            <div class="certs-grid">
+                        <!-- Cert 1: Oracle AI Foundations -->
+                        <div class="cert-card-static">
+                            <div class="cert-card-header">
+                                    <h3 class="cert-title">Oracle AI Foundations Associate</h3>
+                                    <span class="cert-issuer">ORACLE</span>
+                                </div>
+                            <div class="cert-divider"></div>
+                            <div class="cert-topics">Artificial Intelligence • Machine Learning • Cloud AI Services • OCI Foundations</div>
+                        </div>
+
+                        <!-- Cert 2: Microsoft AI -->
+                        <div class="cert-card-static">
+                            <div class="cert-card-header">
+                                    <h3 class="cert-title">AI for Beginners</h3>
+                                    <span class="cert-issuer">MICROSOFT</span>
+                                </div>
+                            <div class="cert-divider"></div>
+                            <div class="cert-topics">Neural Networks • NLP • Computer Vision • Responsible AI</div>
+                        </div>
+
+                        <!-- Cert 3: HackerRank Software Engineer -->
+                        <div class="cert-card-static">
+                            <div class="cert-card-header">
+                                    <h3 class="cert-title">Software Engineer</h3>
+                                    <span class="cert-issuer">HACKERRANK</span>
+                                </div>
+                            <div class="cert-divider"></div>
+                            <div class="cert-topics">Algorithms • Debugging • Software Engineering • Problem Solving</div>
+                        </div>
+
+                        <!-- Cert 4: Problem Solving (Intermediate) -->
+                        <div class="cert-card-static">
+                            <div class="cert-card-header">
+                                    <h3 class="cert-title">Problem Solving (Intermediate)</h3>
+                                    <span class="cert-issuer">HACKERRANK</span>
+                                </div>
+                            <div class="cert-divider"></div>
+                            <div class="cert-topics">Data Structures • Trees • Graphs • Optimization</div>
+                        </div>
+
+                        <!-- Cert 5: SQL (Basic) -->
+                        <div class="cert-card-static">
+                            <div class="cert-card-header">
+                                    <h3 class="cert-title">SQL (Basic)</h3>
+                                    <span class="cert-issuer">HACKERRANK</span>
+                                </div>
+                            <div class="cert-divider"></div>
+                            <div class="cert-topics">Joins • Aggregations • Filtering • Database Queries</div>
+                        </div>
+
+                        <!-- Cert 6: Python -->
+                        <div class="cert-card-static">
+                            <div class="cert-card-header">
+                                    <h3 class="cert-title">Python</h3>
+                                    <span class="cert-issuer">HACKERRANK</span>
+                                </div>
+                            <div class="cert-divider"></div>
+                            <div class="cert-topics">Core Python • OOP • Functions • Data Structures</div>
+                        </div>
+
+                        <!-- Cert 7: Core Java -->
+                        <div class="cert-card-static">
+                            <div class="cert-card-header">
+                                    <h3 class="cert-title">Core Java</h3>
+                                    <span class="cert-issuer">HACKERRANK</span>
+                                </div>
+                            <div class="cert-divider"></div>
+                            <div class="cert-topics">Object-Oriented Programming • Collections • Exception Handling • Inheritance</div>
+                        </div>
+
+                        <!-- Cert 8: Full Stack Development -->
+                        <div class="cert-card-static">
+                            <div class="cert-card-header">
+                                    <h3 class="cert-title">Full Stack Development</h3>
+                                    <span class="cert-issuer">HACKERRANK</span>
+                                </div>
+                            <div class="cert-divider"></div>
+                            <div class="cert-topics">Frontend • Backend • REST APIs • Database Integration</div>
+                        </div>
+
+                        <!-- Cert 9: Python with AI -->
+                        <div class="cert-card-static">
+                            <div class="cert-card-header">
+                                    <h3 class="cert-title">Python with AI</h3>
+                                    <span class="cert-issuer">INTERNSHALA</span>
+                                </div>
+                            <div class="cert-divider"></div>
+                            <div class="cert-topics">Python Programming • Machine Learning • AI Fundamentals • Mini Projects</div>
+                        </div>
+
+                        <!-- Cert 10: SQL for Data Analytics -->
+                        <div class="cert-card-static">
+                            <div class="cert-card-header">
+                                    <h3 class="cert-title">SQL for Data Analytics</h3>
+                                    <span class="cert-issuer">INTERNSHALA</span>
+                                </div>
+                            <div class="cert-divider"></div>
+                            <div class="cert-topics">SQL Analytics • Data Cleaning • Business Insights • Reporting</div>
+                        </div>
+
+                        <!-- Cert 11: Generative AI -->
+                        <div class="cert-card-static">
+                            <div class="cert-card-header">
+                                    <h3 class="cert-title">Generative AI</h3>
+                                    <span class="cert-issuer">INTERNSHALA</span>
+                                </div>
+                            <div class="cert-divider"></div>
+                            <div class="cert-topics">LLMs • Prompt Engineering • AI Applications • Automation</div>
+                        </div>
+
+                        <!-- Cert 12: English Speaking -->
+                        <div class="cert-card-static">
+                            <div class="cert-card-header">
+                                    <h3 class="cert-title">English Speaking</h3>
+                                    <span class="cert-issuer">INTERNSHALA</span>
+                                </div>
+                            <div class="cert-divider"></div>
+                            <div class="cert-topics">Professional Communication • Presentation Skills • Workplace English</div>
+                        </div>
+
+                        <!-- Cert 13: Software Engineering Job Simulation -->
+                        <div class="cert-card-static">
+                            <div class="cert-card-header">
+                                    <h3 class="cert-title">Software Engineering Job Simulation</h3>
+                                    <span class="cert-issuer">ACCENTURE</span>
+                                </div>
+                            <div class="cert-divider"></div>
+                            <div class="cert-topics">Software Design • Development Workflow • Technical Communication • Debugging</div>
+                        </div>
+                    </div>
+                    <p class="timeline-closing reveal-on-scroll" style="margin-top: 60px; text-align: center; font-style: italic; font-size: 1.15rem; opacity: 0.8;">Every certification represents more than a credential—it reflects my commitment to continuously learning, adapting, and staying at the forefront of emerging technologies.</p>
+                </div>
+            </section>
+
+        </div> <!-- End of Wire Container Wrapper -->
+
+        <!-- 7. Contact Section (CONNECT) -->
+        <section class="contact-section" id="contact">
+            <div class="container">
+                <div class="contact-box">
+                    <div class="contact-grid">
+                        <div class="contact-left">
+                            <h2 class="projects-section-title" style="margin-top: 0; font-size: 3rem; line-height: 1.1; margin-bottom: 12px; font-family: var(--font-heading);">Let's Talk</h2>
+                            <h3 class="section-title" style="font-size: 1.7rem; line-height: 1.25; margin: 15px 0 10px 0; color: #ffffff !important;">Let's build<br>something<br><span class="accent-text" style="color: var(--accent-cyan) !important;">extraordinary.</span></h3>
+                            <p class="contact-text">
+                                Looking for a ML developer, a Gen AI integrations engineer, or a research collaborator? Get in touch to establish a transmission.
+                            </p>
+                            <div class="contact-methods">
+                                <a href="mailto:shanikashameem7@gmail.com" class="contact-item magnetic">
+                                    <span class="contact-label">Email</span>
+                                    <span class="contact-value">shanikashameem7@gmail.com</span>
+                                </a>
+                                <a href="https://linkedin.com/in/shanikashameems" target="_blank" class="contact-item magnetic">
+                                    <span class="contact-label">LinkedIn</span>
+                                    <span class="contact-value">shanikashameems</span>
+                                </a>
+                                <div class="contact-item">
+                                    <span class="contact-label">Phone</span>
+                                    <span class="contact-value">+91 9042861077</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="contact-right">
+                        <form
+    class="contact-form"
+    id="contact-form"
+    action="https://formspree.io/f/mdarvder"
+    method="POST"
+    onsubmit="handleContactSubmit(event)">
+
+    <!-- Subject -->
+    <input
+        type="hidden"
+        name="_subject"
+        value="🚀 New Portfolio Transmission">
+
+    <div class="form-group">
+        <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            placeholder=" "
+            class="form-input">
+
+        <label for="name" class="form-label">
+            Name
+        </label>
+
+        <span class="form-line"></span>
+    </div>
+
+    <div class="form-group">
+        <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            placeholder=" "
+            class="form-input">
+
+        <label for="email" class="form-label">
+            Email
+        </label>
+
+        <span class="form-line"></span>
+    </div>
+
+    <div class="form-group">
+        <textarea
+            id="message"
+            name="message"
+            required
+            rows="5"
+            placeholder=" "
+            class="form-input"></textarea>
+
+        <label for="message" class="form-label">
+            Message
+        </label>
+
+        <span class="form-line"></span>
+    </div>
+
+    <button
+        type="submit"
+        class="btn btn-primary btn-submit magnetic">
+
+        <span id="submit-text">
+            Send Transmission
+        </span>
+
+        <span class="btn-glow"></span>
+
+    </button>
+
+</form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container footer-container">
+                <p class="copyright">&copy; 2026 shanikashameems. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="https://github.com/shanikashameems" target="_blank" class="footer-link magnetic">GitHub</a>
+                    <a href="https://linkedin.com/in/shanikashameems" target="_blank" class="footer-link magnetic">LinkedIn</a>
+                </div>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- 3D Interactive Live Sandbox Modal Drawer -->
+    <div class="sandbox-modal-overlay" id="sandbox-modal">
+        <div class="sandbox-drawer">
+            <button class="sandbox-close-btn" id="sandbox-close-btn" aria-label="Close Sandbox">✕</button>
+            <div class="sandbox-drawer-header">
+                <span class="sandbox-eyebrow">interactive sandbox</span>
+                <h3 class="sandbox-title" id="sandbox-modal-title">Project Sandbox</h3>
+                <div class="sandbox-header-divider"></div>
+            </div>
+            <div class="sandbox-drawer-body">
+                <div id="sandbox-viewport">
+                    <!-- Sandbox interactive widgets will be dynamically injected here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3D Transmission Success Modal Overlay -->
+    <div class="modal-overlay" id="success-modal">
+        <div class="modal-card">
+            <div class="modal-3d-glow"></div>
+            <div class="modal-icon">✓</div>
+            <h3 class="modal-title">Transmission Sent Successfully</h3>
+            <p class="modal-body">Your message has been successfully beamed through the matrix to Shanika Shameem.</p>
+            <button class="btn btn-primary modal-close-btn magnetic" onclick="hideTransmissionSuccessModal()">
+                <span>Close Connection</span>
+                <span class="btn-glow"></span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Project JS script -->
+    <script src="script.js"></script>
+</body>
+</html>

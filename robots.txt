@@ -1,0 +1,6 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Sitemap link
+Sitemap: https://shanikashameems.vercel.app/sitemap.xml
