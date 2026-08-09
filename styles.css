@@ -4195,6 +4195,10 @@ textarea:-webkit-autofill:active {
     display: none;
 }
 
+.about-diary-btn {
+    display: none !important;
+}
+
 /* ==========================================================================
    ADDITIONAL MOBILE RESPONSIVENESS AND TIGHT FIXES
    ========================================================================== */
@@ -4460,9 +4464,18 @@ textarea:-webkit-autofill:active {
         margin-bottom: 6px !important;
     }
 
-    /* 5. Contact Form responsive layout overrides */
+    /* 5. Contact Form responsive layout overrides (compact mobile sizes) */
+    .contact-box {
+        padding: 1.5rem 1.25rem !important;
+        border-radius: 20px !important;
+    }
+    
     .contact-form {
         width: 100% !important;
+    }
+    
+    .contact-form .form-group {
+        margin-bottom: 10px !important;
     }
     
     .contact-form input,
@@ -4470,5 +4483,52 @@ textarea:-webkit-autofill:active {
         width: 100% !important;
         max-width: 100% !important;
         box-sizing: border-box !important;
+        padding: 10px 14px !important;
+        font-size: 0.8rem !important;
+    }
+    
+    .contact-form textarea {
+        height: 75px !important;
+    }
+    
+    .contact-text {
+        margin-top: 1.2rem !important;
+        margin-bottom: 1.5rem !important;
+        font-size: 0.92rem !important;
+    }
+    
+    .contact-left .section-title {
+        font-size: 1.35rem !important;
+        line-height: 1.2 !important;
+    }
+
+    /* 6. Intro Section (About) Heading & Tagline Fit */
+    .about-name-hero {
+        font-size: 2.1rem !important;
+        line-height: 1.1 !important;
+        margin-bottom: 8px !important;
+    }
+    
+    .changer-word {
+        font-size: 1.55rem !important;
+    }
+    
+    .tagline-changer {
+        height: 35px !important;
+        margin-bottom: 1.8rem !important;
+    }
+
+    /* 7. Show explore my diary button on mobile */
+    .about-diary-btn {
+        display: flex !important;
+        margin-top: 1.5rem !important;
+        margin-bottom: 1.5rem !important;
+        justify-content: center !important;
+        width: 100% !important;
+    }
+    
+    .about-diary-btn .diary-3d-btn {
+        width: 100% !important;
+        max-width: 280px !important;
     }
 }
