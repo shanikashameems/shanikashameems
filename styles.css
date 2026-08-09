@@ -4343,4 +4343,132 @@ textarea:-webkit-autofill:active {
     .hero-stripe-letter {
         display: none !important;
     }
+
+    /* 1. Hide Hero Homepage in Mobile View */
+    #hero {
+        display: none !important;
+    }
+    
+    .nav-pills a[href="#hero"] {
+        display: none !important;
+    }
+
+    /* 2. Loader logo size clamp for mobile screen widths */
+    .loader-logo {
+        font-size: 2.2rem !important;
+        letter-spacing: -0.03em !important;
+    }
+    
+    .loader-content {
+        width: 85% !important;
+    }
+
+    /* 3. Interactive Lab mobile compatibility updates */
+    .interactive-lab-section {
+        padding: 50px 0 !important;
+    }
+    
+    .lab-header {
+        margin-bottom: 20px !important;
+    }
+    
+    .lab-preview-panel {
+        padding: 25px 15px !important;
+        border-radius: 16px !important;
+    }
+    
+    .lab-preview-card {
+        max-width: 100% !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 250px !important;
+        padding: 1.4rem !important;
+        border-radius: 20px !important;
+    }
+    
+    .lab-card-title {
+        font-size: 1.05rem !important;
+    }
+    
+    .lab-card-desc {
+        font-size: 0.76rem !important;
+        line-height: 1.4 !important;
+        margin-bottom: 10px !important;
+    }
+    
+    .lab-card-specs {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px 10px !important;
+    }
+    
+    .spec-item {
+        gap: 2px !important;
+    }
+    
+    .spec-label {
+        font-size: 0.58rem !important;
+    }
+    
+    .spec-val {
+        font-size: 0.68rem !important;
+    }
+    
+    .lab-controls {
+        padding: 1.2rem 1rem !important;
+        border-radius: 16px !important;
+    }
+    
+    .lab-telemetry-pointer {
+        display: none !important;
+    }
+
+    /* 4. Professional Experience card sizing shrink */
+    .experience-card-3d {
+        height: 215px !important;
+    }
+    
+    .experience-card-front, .experience-card-back {
+        padding: 1.1rem 1rem !important;
+        border-radius: 20px !important;
+    }
+    
+    .experience-card-front h3 {
+        font-size: 1.05rem !important;
+    }
+    
+    .experience-card-front .company {
+        font-size: 0.8rem !important;
+    }
+    
+    .experience-card-front .date-range {
+        font-size: 0.7rem !important;
+    }
+    
+    .experience-card-front .exp-badge {
+        font-size: 0.62rem !important;
+        padding: 3px 8px !important;
+    }
+    
+    .experience-card-back p {
+        font-size: 0.76rem !important;
+        line-height: 1.4 !important;
+    }
+    
+    .experience-card-back .exp-role-back {
+        font-size: 0.72rem !important;
+        margin-bottom: 6px !important;
+    }
+
+    /* 5. Contact Form responsive layout overrides */
+    .contact-form {
+        width: 100% !important;
+    }
+    
+    .contact-form input,
+    .contact-form textarea {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
 }
