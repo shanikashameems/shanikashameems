@@ -2143,10 +2143,37 @@ document.addEventListener("DOMContentLoaded", () => {
     // 3D TILT MECHANICS FOR CONTACT BOX (Cinematic canvas tilt)
     // ==========================================================================
     function initContactBox3DTilt() {
+        // Disable on touch screens/mobile devices to prevent focus blocking on tap events
+        if (window.matchMedia("(max-width: 900px)").matches || ('ontouchstart' in window)) return;
+
         const contactBox = document.querySelector(".contact-box");
+        const contactForm = document.getElementById("contact-form");
         if (!contactBox) return;
 
+        let isFormActive = false;
+
+        if (contactForm) {
+            contactForm.addEventListener("focusin", () => {
+                isFormActive = true;
+                gsap.to(contactBox, {
+                    rotateX: 0,
+                    rotateY: 0,
+                    ease: "power2.out",
+                    duration: 0.25,
+                    overwrite: "auto"
+                });
+            });
+
+            contactForm.addEventListener("focusout", () => {
+                requestAnimationFrame(() => {
+                    isFormActive = contactForm.contains(document.activeElement);
+                });
+            });
+        }
+
         contactBox.addEventListener("mousemove", (e) => {
+            if (isFormActive || e.target.closest("input, textarea, button, label")) return;
+
             const rect = contactBox.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
