@@ -5102,15 +5102,11 @@ body.hud-enabled .footer-link::after {
     }
     
     .skill-card-3d.flipped-parent {
-        height: 280px !important; /* Proper size when flipped open */
-    }
-    
-    .skill-card-front,
-    .skill-card-back {
-        padding: 1rem !important;
+        height: 315px !important; /* Expanded taller height when flipped to fit all text */
     }
     
     .skill-card-front {
+        padding: 1rem !important;
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
@@ -5118,6 +5114,13 @@ body.hud-enabled .footer-link::after {
         text-align: center !important;
     }
 
+    .skill-card-back {
+        padding: 0.8rem 0.65rem !important; /* Compact padding to maximize text space */
+        box-sizing: border-box !important;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    
     /* Hide tech tags on card fronts in mobile to avoid word overlaps */
     .skill-card-front .skill-front-tags {
         display: none !important;
@@ -5134,9 +5137,36 @@ body.hud-enabled .footer-link::after {
         margin-bottom: 4px !important;
     }
     
+    /* Back typography scaling to guarantee words fit perfectly without clipping */
+    .skill-card-back .skill-title-back {
+        font-size: 0.88rem !important;
+        margin-bottom: 3px !important;
+        line-height: 1.2 !important;
+    }
+
+    .skill-card-back .back-divider {
+        margin-bottom: 5px !important;
+    }
+
     .skill-card-back .skill-detailed {
-        font-size: 0.72rem !important;
-        line-height: 1.35 !important;
+        font-size: 0.65rem !important;
+        line-height: 1.3 !important;
+        margin-bottom: 4px !important;
+    }
+
+    .skill-card-back .skill-tech-row {
+        margin-top: auto !important;
+        padding-top: 5px !important;
+    }
+
+    .skill-card-back .tech-row-label {
+        font-size: 0.58rem !important;
+        margin-bottom: 1px !important;
+    }
+
+    .skill-card-back .tech-row-values {
+        font-size: 0.6rem !important;
+        line-height: 1.25 !important;
     }
 
     .cert-card-static {
