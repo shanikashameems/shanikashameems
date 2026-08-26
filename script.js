@@ -98,11 +98,12 @@ document.addEventListener("DOMContentLoaded", () => {
             // Start the 3D Vertical Stripes Entrance Flip
             playHeroEntrance();
             
-            initGSAPScrollTrigger();
             initAboutMeScrollTrigger();
+            initGSAPScrollTrigger();
             initTaglineChanger();
             initHeroLetter3DParallax();
             initPremiumCardMechanics();
+            ScrollTrigger.refresh();
         }, 1200); // 1.2s to match the CSS transition duration
     }
 
@@ -189,6 +190,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // INTERACTIVE 3D POP-OUT & TILT ANIMATION FOR HERO LETTERS
     // ==========================================================================
     function initHeroLetter3DParallax() {
+        // Disable on touch screens/mobile devices to prevent cards getting stuck on tap events
+        if (window.matchMedia("(max-width: 900px)").matches || ('ontouchstart' in window)) return;
+
         const stripes = document.querySelectorAll(".hero-stripe");
         
         stripes.forEach(stripe => {
@@ -293,11 +297,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 }, 1000);
             });
 
-            // Real-time 3D Mouse Tilt
+            // Real-time 3D Mouse Tilt & Holo Glare tracking
             card.addEventListener("mousemove", (e) => {
                 const rect = card.getBoundingClientRect();
                 const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top;
+                
+                // Set CSS variables for holo-glare tracking
+                card.style.setProperty("--mouse-x", `${(x / rect.width) * 100}%`);
+                card.style.setProperty("--mouse-y", `${(y / rect.height) * 100}%`);
                 
                 const xc = x / rect.width - 0.5;
                 const yc = y / rect.height - 0.5;
@@ -527,6 +535,119 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
 
+        // 3D Stagger Reveal for Project Cards inside the Projects grid (Individual Triggers)
+        const projectCardsList = document.querySelectorAll(".projects-grid .project-card");
+        projectCardsList.forEach((card, index) => {
+            gsap.fromTo(card, 
+                {
+                    opacity: 0,
+                    y: 60,
+                    z: -80,
+                    rotateX: -12,
+                    rotateY: 6
+                },
+                {
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 95%",
+                        toggleActions: "play none none reverse"
+                    },
+                    opacity: 1,
+                    y: 0,
+                    z: 0,
+                    rotateX: 0,
+                    rotateY: 0,
+                    transformPerspective: 1500,
+                    duration: 1.0,
+                    delay: (index % 3) * 0.1, // Stagger elements in the same row
+                    ease: "power3.out"
+                }
+            );
+        });
+
+        // Safety fallback: Ensure cards are visible after 2.5 seconds even if ScrollTrigger fails or is blocked
+        setTimeout(() => {
+            projectCardsList.forEach(card => {
+                if (parseFloat(window.getComputedStyle(card).opacity) === 0) {
+                    gsap.to(card, {
+                        opacity: 1,
+                        y: 0,
+                        z: 0,
+                        rotateX: 0,
+                        rotateY: 0,
+                        duration: 0.5,
+                        ease: "power2.out"
+                    });
+                }
+            });
+        }, 2500);
+
+        // 3D Stagger Entrance for Contact Box & Form Groups (Split-Slide Animation Style)
+        const contactBox = document.querySelector(".contact-box");
+        if (contactBox) {
+            // 1. Scale and fade in the contact container card
+            gsap.from(contactBox, {
+                scrollTrigger: {
+                    trigger: contactBox,
+                    start: "top 90%",
+                    toggleActions: "play none none reverse"
+                },
+                opacity: 0,
+                scale: 0.95,
+                duration: 1.2,
+                ease: "power3.out"
+            });
+
+            // 2. Slide left side content from left
+            const contactLeft = contactBox.querySelector(".contact-left");
+            if (contactLeft) {
+                gsap.from(contactLeft, {
+                    scrollTrigger: {
+                        trigger: contactBox,
+                        start: "top 85%",
+                        toggleActions: "play none none reverse"
+                    },
+                    opacity: 0,
+                    x: -60,
+                    duration: 1.0,
+                    ease: "power3.out"
+                });
+            }
+
+            // 3. Slide right side content from right
+            const contactRight = contactBox.querySelector(".contact-right");
+            if (contactRight) {
+                gsap.from(contactRight, {
+                    scrollTrigger: {
+                        trigger: contactBox,
+                        start: "top 85%",
+                        toggleActions: "play none none reverse"
+                    },
+                    opacity: 0,
+                    x: 60,
+                    duration: 1.0,
+                    ease: "power3.out"
+                });
+            }
+
+            // 4. Stagger fade & scale form fields inside the right column
+            const rightFormElements = contactBox.querySelectorAll(".contact-right .form-group, .contact-right .btn-submit");
+            if (rightFormElements.length > 0) {
+                gsap.from(rightFormElements, {
+                    scrollTrigger: {
+                        trigger: contactBox,
+                        start: "top 80%",
+                        toggleActions: "play none none reverse"
+                    },
+                    opacity: 0,
+                    scale: 0.92,
+                    z: -20,
+                    duration: 0.8,
+                    stagger: 0.08,
+                    ease: "power2.out"
+                });
+            }
+        }
     }
 
     // ==========================================================================
@@ -1682,12 +1803,19 @@ document.addEventListener("DOMContentLoaded", () => {
                 html: `
                     <div class="writer-sandbox">
                         <div class="writer-input-box">
-                            <label for="prompt-select">Choose Writing Template:</label>
-                            <select id="prompt-select" class="writer-select-prompt">
-                                <option value="tech-launch">Product/Project Launch Announcement</option>
-                                <option value="career-advice">Key Engineering Trade-off Reflection</option>
-                                <option value="ai-trend">Generative AI agents trend forecast</option>
-                            </select>
+                            <label>Choose Writing Template:</label>
+                            <div class="custom-dropdown" id="writer-dropdown">
+                                <div class="custom-dropdown-trigger">
+                                    <span class="dropdown-trigger-text">Product/Project Launch Announcement</span>
+                                    <svg class="dropdown-trigger-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0a0a0c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                </div>
+                                <div class="custom-dropdown-options">
+                                    <div class="custom-dropdown-option active" data-value="tech-launch">Product/Project Launch Announcement</div>
+                                    <div class="custom-dropdown-option" data-value="career-advice">Key Engineering Trade-off Reflection</div>
+                                    <div class="custom-dropdown-option" data-value="ai-trend">Generative AI agents trend forecast</div>
+                                </div>
+                            </div>
+                            <input type="hidden" id="prompt-select" value="tech-launch">
                         </div>
                         <div class="writer-input-box">
                             <label for="prompt-raw">Topic Keywords (e.g., "Sentinel AI, Expo, privacy"):</label>
@@ -1698,17 +1826,56 @@ document.addEventListener("DOMContentLoaded", () => {
                             <label>Draft Output Workspace:</label>
                             <div class="writer-output-box" id="writer-output">Your generated agentic post draft will render here...</div>
                         </div>
+                        <div class="sandbox-sample-notice"><span class="notice-status-dot"></span>[ SAMPLE PREVIEW: GENERATES MOCKED DRAFT CAPTIONS ]</div>
                     </div>
                 `,
                 script: () => {
                     const genBtn = document.getElementById("writer-generate");
-                    const select = document.getElementById("prompt-select");
+                    const hiddenInput = document.getElementById("prompt-select");
                     const textarea = document.getElementById("prompt-raw");
                     const output = document.getElementById("writer-output");
-                    if (!genBtn || !select || !textarea || !output) return;
+                    
+                    const dropdown = document.getElementById("writer-dropdown");
+                    const trigger = dropdown ? dropdown.querySelector(".custom-dropdown-trigger") : null;
+                    const triggerText = dropdown ? dropdown.querySelector(".dropdown-trigger-text") : null;
+                    const optionsList = dropdown ? dropdown.querySelector(".custom-dropdown-options") : null;
+                    const options = dropdown ? dropdown.querySelectorAll(".custom-dropdown-option") : [];
+                    
+                    if (!genBtn || !hiddenInput || !textarea || !output || !dropdown || !trigger || !triggerText || !optionsList) return;
+                    
+                    // Toggle dropdown open state
+                    trigger.addEventListener("click", (e) => {
+                        e.stopPropagation();
+                        dropdown.classList.toggle("open");
+                    });
+                    
+                    // Close dropdown when clicking outside
+                    document.addEventListener("click", () => {
+                        dropdown.classList.remove("open");
+                    });
+                    
+                    // Handle option selection
+                    options.forEach(opt => {
+                        opt.addEventListener("click", (e) => {
+                            e.stopPropagation();
+                            const val = opt.getAttribute("data-value");
+                            const labelText = opt.innerText;
+                            
+                            // Update values
+                            hiddenInput.value = val;
+                            triggerText.innerText = labelText;
+                            
+                            // Active styling toggle
+                            options.forEach(o => o.classList.remove("active"));
+                            opt.classList.add("active");
+                            
+                            // Close dropdown
+                            dropdown.classList.remove("open");
+                        });
+                    });
                     
                     genBtn.addEventListener("click", () => {
-                        const val = select.value;
+                        const val = hiddenInput.value;
                         const keywords = textarea.value.trim() || "Gen AI Developer projects";
                         output.innerText = "Connecting agent nodes...\nInvoking LangChain retriever indices...\nRunning agent writer...";
                         
@@ -1721,7 +1888,18 @@ document.addEventListener("DOMContentLoaded", () => {
                             } else {
                                 post = `🤖 Generative AI and the future of ${keywords} is evolving faster than ever. \n\nWe are shifting from static models to autonomous, multi-agent frameworks that orchestrate entire development lifecycles. Building tools in this domain requires thinking about context limits and asynchronous pipelines from day one. \n\nHow is agentic execution reshaping your roadmap? \n\n#ArtificialIntelligence #MachineLearning #LLM`;
                             }
-                            output.innerText = post;
+                            
+                            // Elevate output with typewriter printing effect animation
+                            output.innerText = "";
+                            let i = 0;
+                            function typeWriter() {
+                                if (i < post.length) {
+                                    output.innerText += post.charAt(i);
+                                    i++;
+                                    setTimeout(typeWriter, 4); // Quick typewriter speed
+                                }
+                            }
+                            typeWriter();
                         }, 1000);
                     });
                 }
@@ -1748,6 +1926,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                 <button class="remover-sample-btn" data-img="sam2">SAM2 Beta</button>
                             </div>
                         </div>
+                        <div class="sandbox-sample-notice"><span class="notice-status-dot"></span>[ SAMPLE PREVIEW: ORIGINAL MODEL HANDLES FULL-RESOLUTION IMAGES ]</div>
                     </div>
                 `,
                 script: () => {
@@ -1835,138 +2014,54 @@ document.addEventListener("DOMContentLoaded", () => {
                     <div class="qr-sandbox">
                         <div class="qr-input-row">
                             <label for="qr-url">Input Target Web Address:</label>
-                            <input type="text" id="qr-url" class="qr-text-input" value="https://shanikashameems.github.io/">
+                            <input type="text" id="qr-url" class="qr-text-input" value="https://shanikashameems.vercel.app/">
                         </div>
-                        <div class="qr-output-canvas-box" id="qr-canvas-box">
-                            <svg viewBox="0 0 100 100" fill="#000000" id="qr-svg-obj">
-                                <rect width="100" height="100" fill="#ffffff" />
-                                <rect x="5" y="5" width="20" height="20" fill="#000" />
-                                <rect x="7" y="7" width="16" height="16" fill="#fff" />
-                                <rect x="11" y="11" width="8" height="8" fill="#000" />
-                                
-                                <rect x="75" y="5" width="20" height="20" fill="#000" />
-                                <rect x="77" y="7" width="16" height="16" fill="#fff" />
-                                <rect x="81" y="81" width="8" height="8" fill="#000" />
-                                
-                                <rect x="5" y="75" width="20" height="20" fill="#000" />
-                                <rect x="7" y="77" width="16" height="16" fill="#fff" />
-                                <rect x="11" y="81" width="8" height="8" fill="#000" />
-                                
-                                <rect x="35" y="10" width="8" height="8" fill="#000" />
-                                <rect x="50" y="25" width="6" height="6" fill="#000" />
-                                <rect x="65" y="45" width="10" height="10" fill="#000" />
-                                <rect x="30" y="55" width="14" height="4" fill="#000" />
-                                <rect x="55" y="70" width="8" height="12" fill="#000" />
-                                <rect x="85" y="75" width="10" height="10" fill="#000" />
-                                <rect x="40" y="80" width="6" height="8" fill="#000" />
-                            </svg>
+                        <div class="qr-output-canvas-box" id="qr-canvas-box" style="display: flex; justify-content: center; align-items: center; background: white; padding: 15px; border-radius: 12px; border: 1px solid rgba(10, 10, 12, 0.08); width: 160px; height: 160px; margin: 10px auto;">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https%3A%2F%2Fshanikashameems.vercel.app%2F" alt="QR Code" id="qr-image-obj" style="width: 140px; height: 140px; object-fit: contain;">
                         </div>
-                        <button class="qr-download-btn" id="qr-download-trigger">Generate & Download SVG Vector</button>
+                        <button class="qr-download-btn" id="qr-download-trigger" style="width: 100%;">Download QR Code Image</button>
+                        <div class="sandbox-sample-notice"><span class="notice-status-dot"></span>[ SAMPLE PREVIEW: GENERATES LIVE READABLE QR CODES ]</div>
                     </div>
                 `,
                 script: () => {
                     const input = document.getElementById("qr-url");
                     const downloadBtn = document.getElementById("qr-download-trigger");
-                    const svgObj = document.getElementById("qr-svg-obj");
-                    if (!input || !downloadBtn || !svgObj) return;
+                    const qrImg = document.getElementById("qr-image-obj");
+                    if (!input || !downloadBtn || !qrImg) return;
                     
                     input.addEventListener("input", (e) => {
-                        const val = e.target.value.trim();
-                        const length = val.length;
-                        const rects = svgObj.querySelectorAll("rect");
-                        if (rects.length > 5) {
-                            rects[4].setAttribute("width", Math.max(4, (length % 12)).toString());
-                            rects[5].setAttribute("height", Math.max(5, (length % 15)).toString());
-                            rects[6].setAttribute("x", Math.min(80, 50 + (length % 25)).toString());
-                        }
+                        const val = encodeURIComponent(e.target.value.trim() || "https://shanikashameems.vercel.app/");
+                        qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${val}`;
                     });
                     
                     downloadBtn.addEventListener("click", () => {
-                        alert(`QR vector generated for "${input.value}". Download simulated successfully!`);
-                    });
-                }
-            },
-            4: {
-                title: "File Morpher converter simulator",
-                html: `
-                    <div class="morpher-sandbox">
-                        <div class="morpher-drop-zone" id="morph-drop">
-                            <div class="morpher-drop-icon">📁</div>
-                            <div class="morpher-drop-text" id="morph-file-lbl">Drag & Drop file here or Click to select</div>
-                            <div class="morpher-drop-subtext">Supported formats: PDF, PNG, JPEG, JSON, CSV</div>
-                        </div>
-                        <div class="morpher-options">
-                            <div class="morpher-opt">
-                                <label>Convert From:</label>
-                                <select class="morpher-select" id="morph-from">
-                                    <option value="png">PNG Image</option>
-                                    <option value="pdf">PDF Document</option>
-                                    <option value="csv">CSV Table</option>
-                                </select>
-                            </div>
-                            <div class="morpher-opt">
-                                <label>Convert To:</label>
-                                <select class="morpher-select" id="morph-to">
-                                    <option value="jpeg">JPEG Image</option>
-                                    <option value="png">PNG Image</option>
-                                    <option value="pdf">PDF Document</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="morpher-status-box" id="morph-status" style="display: none;">
-                            <div class="morpher-file-info">
-                                <span class="morpher-file-name" id="morph-file-name">analytics.csv</span>
-                                <span class="morpher-file-status" id="morph-file-state">Processing...</span>
-                            </div>
-                            <div class="morpher-progress-bar-bg">
-                                <div class="morpher-progress-bar-fill" id="morph-progress-fill"></div>
-                            </div>
-                        </div>
-                        <button class="morpher-btn" id="morph-trigger">Run Morph conversion</button>
-                    </div>
-                `,
-                script: () => {
-                    const drop = document.getElementById("morph-drop");
-                    const label = document.getElementById("morph-file-lbl");
-                    const statusBox = document.getElementById("morph-status");
-                    const name = document.getElementById("morph-file-name");
-                    const state = document.getElementById("morph-file-state");
-                    const fill = document.getElementById("morph-progress-fill");
-                    const triggerBtn = document.getElementById("morph-trigger");
-                    
-                    if (!drop || !label || !statusBox || !name || !state || !fill || !triggerBtn) return;
-                    
-                    let simulatedFile = null;
-                    
-                    drop.addEventListener("click", () => {
-                        simulatedFile = { name: "portfolio_analysis.png", size: "2.4 MB" };
-                        label.innerText = `Loaded: ${simulatedFile.name} (${simulatedFile.size})`;
-                    });
-                    
-                    triggerBtn.addEventListener("click", () => {
-                        if (!simulatedFile) {
-                            simulatedFile = { name: "dataset.csv", size: "1.1 MB" };
-                        }
-                        statusBox.style.display = "block";
-                        name.innerText = simulatedFile.name;
-                        state.innerText = "Buffering...";
-                        fill.style.width = "0%";
+                        const val = encodeURIComponent(input.value.trim() || "https://shanikashameems.vercel.app/");
+                        const downloadUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${val}`;
                         
-                        let pct = 0;
-                        triggerBtn.disabled = true;
+                        downloadBtn.innerText = "Downloading Code...";
+                        downloadBtn.disabled = true;
                         
-                        const interval = setInterval(() => {
-                            pct += 10;
-                            fill.style.width = `${pct}%`;
-                            if (pct >= 40) state.innerText = "Parsing headers...";
-                            if (pct >= 70) state.innerText = "Compressing allocations...";
-                            if (pct >= 100) {
-                                clearInterval(interval);
-                                state.innerText = "SUCCESS (Converted)";
-                                triggerBtn.disabled = false;
-                                alert("Conversion complete. Converted file delivered via simulated stream!");
-                            }
-                        }, 250);
+                        fetch(downloadUrl)
+                            .then(response => response.blob())
+                            .then(blob => {
+                                const url = window.URL.createObjectURL(blob);
+                                const a = document.createElement("a");
+                                a.href = url;
+                                a.download = "qr-code.png";
+                                document.body.appendChild(a);
+                                a.click();
+                                document.body.removeChild(a);
+                                window.URL.revokeObjectURL(url);
+                                
+                                downloadBtn.innerText = "Download QR Code Image";
+                                downloadBtn.disabled = false;
+                            })
+                            .catch(err => {
+                                console.error("Error downloading QR:", err);
+                                window.open(downloadUrl, "_blank");
+                                downloadBtn.innerText = "Download QR Code Image";
+                                downloadBtn.disabled = false;
+                            });
                     });
                 }
             }
@@ -2010,9 +2105,83 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // ==========================================================================
+    // CINEMATIC HUD DECRYPT TOGGLE
+    // ==========================================================================
+    function initHudToggle() {
+        const hudBtn = document.getElementById("hud-toggle-btn");
+        const hudText = hudBtn ? hudBtn.querySelector(".hud-btn-text") : null;
+        
+        if (!hudBtn || !hudText) return;
+        
+        const consoleBody = document.getElementById("console-body");
+        function addLabConsoleLine(text, colorClass = "text-cyan") {
+            if (!consoleBody) return;
+            const line = document.createElement("div");
+            line.className = `console-line ${colorClass}`;
+            line.innerText = `[${new Date().toLocaleTimeString()}] ${text}`;
+            consoleBody.appendChild(line);
+            consoleBody.scrollTop = consoleBody.scrollHeight;
+            while (consoleBody.children.length > 20) {
+                consoleBody.removeChild(consoleBody.firstChild);
+            }
+        }
+        
+        hudBtn.addEventListener("click", () => {
+            const isEnabled = document.body.classList.toggle("hud-enabled");
+            if (isEnabled) {
+                hudText.innerText = "HUD DECRYPT: ON";
+                addLabConsoleLine("System override. Decrypt mode active. Matrix visual overlays enabled.", "text-cyan");
+            } else {
+                hudText.innerText = "HUD DECRYPT: OFF";
+                addLabConsoleLine("Override disabled. System secure. Standard themes restored.", "text-cyan");
+            }
+        });
+    }
+
+    // ==========================================================================
+    // 3D TILT MECHANICS FOR CONTACT BOX (Cinematic canvas tilt)
+    // ==========================================================================
+    function initContactBox3DTilt() {
+        const contactBox = document.querySelector(".contact-box");
+        if (!contactBox) return;
+
+        contactBox.addEventListener("mousemove", (e) => {
+            const rect = contactBox.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const xc = x / rect.width - 0.5;
+            const yc = y / rect.height - 0.5;
+            
+            const maxTilt = 4; // Gentle tilt suited for larger card component bounds
+
+            gsap.to(contactBox, {
+                rotateX: -yc * maxTilt,
+                rotateY: xc * maxTilt,
+                transformPerspective: 1200,
+                ease: "power2.out",
+                duration: 0.45,
+                overwrite: "auto"
+            });
+        });
+
+        contactBox.addEventListener("mouseleave", () => {
+            gsap.to(contactBox, {
+                rotateX: 0,
+                rotateY: 0,
+                ease: "power3.out",
+                duration: 0.6,
+                overwrite: "auto"
+            });
+        });
+    }
+
     init3DDiaryButton();
     initInteractiveLab();
     initSandboxDrawer();
+    initHudToggle();
+    initContactBox3DTilt();
     preloadAssets();
 });
 
