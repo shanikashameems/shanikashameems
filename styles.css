@@ -5104,6 +5104,11 @@ body.hud-enabled .footer-link::after {
     .skill-card-3d.flipped-parent {
         height: 315px !important; /* Expanded taller height when flipped to fit all text */
     }
+
+    .skill-card-3d.flipped-parent .skill-card-inner,
+    .skill-card-3d.flipped-parent .skill-card-back {
+        height: 100% !important; /* Ensure children stretch to fill parent height */
+    }
     
     .skill-card-front {
         padding: 1rem !important;
@@ -5167,6 +5172,29 @@ body.hud-enabled .footer-link::after {
     .skill-card-back .tech-row-values {
         font-size: 0.6rem !important;
         line-height: 1.25 !important;
+    }
+
+    /* Specific overrides for Leadership & Soft Skills card back on mobile viewports */
+    .skill-card-3d[data-skill-id="7"].flipped-parent {
+        height: 425px !important; /* Raised to 425px to comfortably fit all categories and tech rows */
+    }
+
+    .skill-card-3d[data-skill-id="7"] .skill-detailed {
+        font-size: 0.62rem !important; /* Scale text down slightly to increase horizontal fitting */
+        line-height: 1.25 !important;
+        margin-bottom: 5px !important;
+    }
+
+    .skill-card-3d[data-skill-id="7"] .leadership-categories-grid {
+        grid-template-columns: 1fr !important; /* Stack in single column to maximize text wrapping widths */
+        gap: 4px !important;
+        margin-bottom: 5px !important;
+    }
+
+    .skill-card-3d[data-skill-id="7"] .lead-cat-item {
+        font-size: 0.58rem !important; /* Highly readable compact size */
+        line-height: 1.25 !important;
+        margin-bottom: 1px !important;
     }
 
     .cert-card-static {
