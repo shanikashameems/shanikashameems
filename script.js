@@ -100,6 +100,8 @@ document.addEventListener("DOMContentLoaded", () => {
             
             initAboutMeScrollTrigger();
             initGSAPScrollTrigger();
+            initKineticHeadingRolls();
+            initMagneticButtons();
             initTaglineChanger();
             initHeroLetter3DParallax();
             initPremiumCardMechanics();
@@ -220,7 +222,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     rotateZ: -nx * 4, // Subtle roll rotation for extra 3D sway
                     scale: 1.04,
                     boxShadow: "0 25px 55px rgba(0, 0, 0, 0.2)", // Deeper shadow
-                    duration: 0.35,
+                    duration: 0.25,
                     ease: "power2.out",
                     overwrite: "auto"
                 });
@@ -233,7 +235,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     rotateZ: nx * 8, // Noticeable letter sway
                     scale: 1.25, // Scaled larger
                     textShadow: `${-nx * 25}px ${ny * 25}px 30px rgba(0, 0, 0, 0.45)`, // Extended sharp shadow
-                    duration: 0.35,
+                    duration: 0.25,
                     ease: "power2.out",
                     overwrite: "auto"
                 });
@@ -294,6 +296,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 hoverTimeout = setTimeout(() => {
                     inner.classList.add("flipped");
                     card.classList.add("flipped-parent");
+                    gsap.to(inner, {
+                        rotateX: 0,
+                        rotateY: 180,
+                        z: 35,
+                        transformPerspective: 1200,
+                        duration: 0.75,
+                        ease: "back.out(1.1)",
+                        overwrite: "auto",
+                        onComplete: () => {
+                            gsap.to(inner, { z: 0, duration: 0.25, ease: "power2.out" });
+                        }
+                    });
                 }, 1000);
             });
 
@@ -310,7 +324,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const xc = x / rect.width - 0.5;
                 const yc = y / rect.height - 0.5;
                 
-                const maxTilt = 10; // Subtler premium tilt
+                const maxTilt = 14; // High-depth 3D tilt
 
                 // Calculate tilt angles based on flip state
                 let rotateX = -yc * maxTilt;
@@ -324,9 +338,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 gsap.to(inner, {
                     rotateX: rotateX,
                     rotateY: rotateY,
-                    transformPerspective: 1000,
+                    z: 22,
+                    transformPerspective: 1200,
                     ease: "power2.out",
-                    duration: 0.35,
+                    duration: 0.25,
                     overwrite: "auto"
                 });
             });
@@ -342,7 +357,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 gsap.to(inner, {
                     rotateX: 0,
                     rotateY: 0,
-                    transformPerspective: 1000,
+                    z: 0,
+                    transformPerspective: 1200,
                     ease: "power2.out",
                     duration: 0.5,
                     overwrite: "auto"
@@ -359,13 +375,30 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (isClicked) {
                     inner.classList.add("flipped");
                     card.classList.add("flipped-parent");
-                    // Settle flipped state with tilt reset
-                    gsap.to(inner, { rotateX: 0, rotateY: 180, transformPerspective: 1000, duration: 0.5 });
+                    gsap.to(inner, {
+                        rotateX: 0,
+                        rotateY: 180,
+                        z: 35,
+                        transformPerspective: 1200,
+                        duration: 0.75,
+                        ease: "back.out(1.1)",
+                        overwrite: "auto",
+                        onComplete: () => {
+                            gsap.to(inner, { z: 0, duration: 0.25, ease: "power2.out" });
+                        }
+                    });
                 } else {
                     inner.classList.remove("flipped");
                     card.classList.remove("flipped-parent");
-                    // Reset back to normal flat
-                    gsap.to(inner, { rotateX: 0, rotateY: 0, transformPerspective: 1000, duration: 0.5 });
+                    gsap.to(inner, {
+                        rotateX: 0,
+                        rotateY: 0,
+                        z: 0,
+                        transformPerspective: 1200,
+                        duration: 0.65,
+                        ease: "power2.out",
+                        overwrite: "auto"
+                    });
                 }
             });
 
@@ -387,6 +420,14 @@ document.addEventListener("DOMContentLoaded", () => {
                     if (!isScrolling) {
                         inner.classList.add("flipped");
                         card.classList.add("flipped-parent");
+                        gsap.to(inner, {
+                            rotateX: 0,
+                            rotateY: 180,
+                            z: 30,
+                            transformPerspective: 1200,
+                            duration: 0.7,
+                            ease: "power2.out"
+                        });
                     }
                 }, 1000);
             }, { passive: true });
@@ -410,7 +451,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 inner.classList.remove("flipped");
                 card.classList.remove("flipped-parent");
-                gsap.to(inner, { rotateX: 0, rotateY: 0, transformPerspective: 1000, duration: 0.5 });
+                gsap.to(inner, {
+                    rotateX: 0,
+                    rotateY: 0,
+                    z: 0,
+                    transformPerspective: 1200,
+                    duration: 0.5,
+                    ease: "power2.out"
+                });
             });
         });
 
@@ -425,15 +473,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 const xc = x / rect.width - 0.5;
                 const yc = y / rect.height - 0.5;
                 
-                const maxTilt = 10;
+                const maxTilt = 12;
 
                 gsap.to(card, {
                     rotateX: -yc * maxTilt,
                     rotateY: xc * maxTilt,
-                    transformPerspective: 1000,
-                    z: 10,
+                    transformPerspective: 1200,
+                    z: 16,
                     ease: "power2.out",
-                    duration: 0.35,
+                    duration: 0.25,
                     overwrite: "auto"
                 });
             });
@@ -442,12 +490,134 @@ document.addEventListener("DOMContentLoaded", () => {
                 gsap.to(card, {
                     rotateX: 0,
                     rotateY: 0,
-                    transformPerspective: 1000,
+                    transformPerspective: 1200,
                     z: 0,
                     ease: "power2.out",
-                    duration: 0.5,
+                    duration: 0.45,
                     overwrite: "auto"
                 });
+            });
+        });
+    }
+
+    // ==========================================================================
+    // 3. KINETIC 3D CHARACTER ROLL-IN ON SECTION HEADINGS
+    // ==========================================================================
+    function initKineticHeadingRolls() {
+        const headings = document.querySelectorAll(
+            ".projects-header .projects-section-title, " +
+            "#experience .section-title, " +
+            "#skills .section-title, " +
+            "#education .section-title, " +
+            "#connect .section-title, " +
+            "#contact .projects-section-title"
+        );
+
+        headings.forEach(heading => {
+            const rawText = heading.textContent.trim();
+            if (!rawText || heading.dataset.rolled) return;
+            heading.dataset.rolled = "true";
+            heading.setAttribute("aria-label", rawText);
+
+            // Split text into words, then characters
+            const words = rawText.split(" ");
+            heading.innerHTML = words.map(word => {
+                const chars = word.split("").map(ch => `<span class="roll-char">${ch}</span>`).join("");
+                return `<span class="roll-word">${chars}</span>`;
+            }).join("&nbsp;");
+
+            const charSpans = heading.querySelectorAll(".roll-char");
+            if (typeof gsap !== "undefined") {
+                gsap.fromTo(charSpans, 
+                    {
+                        opacity: 0,
+                        y: 28,
+                        rotateX: -85,
+                        z: -20
+                    },
+                    {
+                        scrollTrigger: {
+                            trigger: heading,
+                            start: "top 88%",
+                            toggleActions: "play none none none"
+                        },
+                        opacity: 1,
+                        y: 0,
+                        rotateX: 0,
+                        z: 0,
+                        transformPerspective: 1000,
+                        duration: 0.7,
+                        stagger: 0.02,
+                        ease: "back.out(1.2)"
+                    }
+                );
+            }
+        });
+    }
+
+    // ==========================================================================
+    // 4. MAGNETIC SPRING PHYSICS ON INTERACTIVE ACTION BUTTONS
+    // ==========================================================================
+    function initMagneticButtons() {
+        if (window.matchMedia("(max-width: 900px)").matches || ('ontouchstart' in window)) return;
+
+        const magneticButtons = document.querySelectorAll(
+            ".nav-pill-btn.dark-pill, .diary-button-wrapper, .btn-submit"
+        );
+
+        magneticButtons.forEach(btn => {
+            const text = btn.querySelector("span, #submit-text, .diary-btn-title") || btn;
+
+            btn.addEventListener("mousemove", (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+
+                if (typeof gsap !== "undefined") {
+                    gsap.to(btn, {
+                        x: x * 0.35,
+                        y: y * 0.35,
+                        rotateX: -y * 0.12,
+                        rotateY: x * 0.12,
+                        duration: 0.3,
+                        ease: "power2.out",
+                        overwrite: "auto"
+                    });
+
+                    if (text && text !== btn) {
+                        gsap.to(text, {
+                            x: x * 0.2,
+                            y: y * 0.2,
+                            duration: 0.25,
+                            ease: "power2.out",
+                            overwrite: "auto"
+                        });
+                    }
+                }
+            });
+
+            btn.addEventListener("mouseleave", () => {
+                if (typeof gsap !== "undefined") {
+                    gsap.to(btn, {
+                        x: 0,
+                        y: 0,
+                        rotateX: 0,
+                        rotateY: 0,
+                        duration: 0.7,
+                        ease: "elastic.out(1.1, 0.4)",
+                        overwrite: "auto"
+                    });
+
+                    if (text && text !== btn) {
+                        gsap.to(text, {
+                            x: 0,
+                            y: 0,
+                            duration: 0.6,
+                            ease: "elastic.out(1.1, 0.4)",
+                            overwrite: "auto"
+                        });
+                    }
+                }
             });
         });
     }
@@ -504,34 +674,30 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         // ==========================================================================
-        // SECTION TITLES: PREMIUM 3D FOLD-IN SCROLL ENTRANCES
+        // SECTION DESCRIPTIONS: SUBTITLE 3D GLIDE ENTRANCES
         // ==========================================================================
-        const sectionTitles = document.querySelectorAll(
-            ".projects-header, " +
-            "#experience .section-title, #experience .section-desc, " +
-            "#skills .section-title, #skills .section-desc, " +
-            "#education .section-title, #education .section-desc, " +
-            "#connect .section-title, #connect .section-desc, " +
-            "#contact .projects-section-title, #contact .section-desc, #contact .contact-text"
+        const sectionDescs = document.querySelectorAll(
+            ".projects-header .projects-section-desc, " +
+            "#experience .section-desc, " +
+            "#skills .section-desc, " +
+            "#education .section-desc, " +
+            "#connect .section-desc, " +
+            "#contact .section-desc, #contact .contact-text"
         );
 
-        sectionTitles.forEach(title => {
-            // Remove reveal-on-scroll to avoid conflict with GSAP opacity settings
-            title.classList.remove("reveal-on-scroll");
+        sectionDescs.forEach(desc => {
+            desc.classList.remove("reveal-on-scroll");
 
-            gsap.from(title, {
+            gsap.from(desc, {
                 scrollTrigger: {
-                    trigger: title,
-                    start: "top 85%",
-                    toggleActions: "play none none reverse"
+                    trigger: desc,
+                    start: "top 90%",
+                    toggleActions: "play none none none"
                 },
                 opacity: 0,
-                y: 35,
-                z: -50,
-                rotateX: -25,
-                transformPerspective: 1000,
-                duration: 0.85,
-                ease: "power3.out"
+                y: 20,
+                duration: 0.8,
+                ease: "power2.out"
             });
         });
 
@@ -550,7 +716,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     scrollTrigger: {
                         trigger: card,
                         start: "top 95%",
-                        toggleActions: "play none none reverse"
+                        toggleActions: "play none none none"
                     },
                     opacity: 1,
                     y: 0,
@@ -565,7 +731,7 @@ document.addEventListener("DOMContentLoaded", () => {
             );
         });
 
-        // Safety fallback: Ensure cards are visible after 2.5 seconds even if ScrollTrigger fails or is blocked
+        // Safety fallback: Ensure cards are visible after 1.5 seconds even if ScrollTrigger fails or is blocked
         setTimeout(() => {
             projectCardsList.forEach(card => {
                 if (parseFloat(window.getComputedStyle(card).opacity) === 0) {
@@ -580,7 +746,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     });
                 }
             });
-        }, 2500);
+        }, 1500);
 
         // 3D Stagger Entrance for Contact Box & Form Groups (Split-Slide Animation Style)
         const contactBox = document.querySelector(".contact-box");
@@ -590,7 +756,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 scrollTrigger: {
                     trigger: contactBox,
                     start: "top 90%",
-                    toggleActions: "play none none reverse"
+                    toggleActions: "play none none none"
                 },
                 opacity: 0,
                 scale: 0.95,
@@ -605,7 +771,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     scrollTrigger: {
                         trigger: contactBox,
                         start: "top 85%",
-                        toggleActions: "play none none reverse"
+                        toggleActions: "play none none none"
                     },
                     opacity: 0,
                     x: -60,
@@ -621,7 +787,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     scrollTrigger: {
                         trigger: contactBox,
                         start: "top 85%",
-                        toggleActions: "play none none reverse"
+                        toggleActions: "play none none none"
                     },
                     opacity: 0,
                     x: 60,
@@ -637,7 +803,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     scrollTrigger: {
                         trigger: contactBox,
                         start: "top 80%",
-                        toggleActions: "play none none reverse"
+                        toggleActions: "play none none none"
                     },
                     opacity: 0,
                     scale: 0.92,
@@ -1197,7 +1363,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Observer for fade-ins
+    // Observer for fade-ins (Ensuring immediate visibility when approaching viewport)
     const revealElements = document.querySelectorAll(".reveal-on-scroll");
     
     const revealObserver = new IntersectionObserver((entries, observer) => {
@@ -1208,12 +1374,20 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }, {
-        threshold: 0.15
+        threshold: 0.05,
+        rootMargin: "0px 0px 60px 0px"
     });
     
     revealElements.forEach(elem => {
         revealObserver.observe(elem);
     });
+
+    // Safety net: ensure all elements are visible after initial load
+    setTimeout(() => {
+        revealElements.forEach(elem => {
+            elem.classList.add("active");
+        });
+    }, 1500);
 
     // Sleek Page Scroll Progress Indicator
     const progressContainer = document.createElement("div");
@@ -1274,6 +1448,87 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
+    // ==========================================================================
+    // 5. CYBER SHARD PARTICLE BURST ON TRANSMISSION
+    // ==========================================================================
+    function triggerCyberShardBurst(x, y) {
+        const shardContainer = document.createElement("div");
+        shardContainer.className = "shard-burst-container";
+        shardContainer.style.cssText = `
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 99999;
+            perspective: 1200px;
+            overflow: hidden;
+        `;
+        document.body.appendChild(shardContainer);
+
+        const colors = ["#00d6ff", "#387bf6", "#ffd700", "#ffffff", "#00ffaa"];
+        const shardCount = 36;
+
+        for (let i = 0; i < shardCount; i++) {
+            const shard = document.createElement("div");
+            shard.className = "cyber-shard";
+            const size = Math.random() * 8 + 4;
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            const shapeType = Math.floor(Math.random() * 3);
+            let clipPath = "none";
+            if (shapeType === 0) clipPath = "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)";
+            else if (shapeType === 1) clipPath = "polygon(50% 0%, 0% 100%, 100% 100%)";
+            
+            shard.style.cssText = `
+                position: absolute;
+                left: ${x}px;
+                top: ${y}px;
+                width: ${size}px;
+                height: ${size * (shapeType === 2 ? 1 : 1.4)}px;
+                background: ${color};
+                box-shadow: 0 0 12px ${color};
+                clip-path: ${clipPath};
+                border-radius: ${shapeType === 2 ? '2px' : '0'};
+                will-change: transform, opacity;
+            `;
+            shardContainer.appendChild(shard);
+
+            const angle = Math.random() * Math.PI * 2;
+            const velocity = Math.random() * 180 + 70;
+            const targetX = Math.cos(angle) * velocity;
+            const targetY = Math.sin(angle) * velocity - Math.random() * 50;
+            const rotX = (Math.random() - 0.5) * 720;
+            const rotY = (Math.random() - 0.5) * 720;
+            const rotZ = (Math.random() - 0.5) * 360;
+
+            if (typeof gsap !== "undefined") {
+                gsap.to(shard, {
+                    x: targetX,
+                    y: targetY,
+                    z: (Math.random() - 0.5) * 150,
+                    rotateX: rotX,
+                    rotateY: rotY,
+                    rotateZ: rotZ,
+                    opacity: 0,
+                    scale: Math.random() * 0.4 + 0.1,
+                    duration: Math.random() * 0.5 + 0.85,
+                    ease: "power3.out",
+                    onComplete: () => {
+                        shard.remove();
+                        if (shardContainer.children.length === 0) {
+                            shardContainer.remove();
+                        }
+                    }
+                });
+            }
+        }
+
+        setTimeout(() => {
+            if (shardContainer.parentNode) shardContainer.remove();
+        }, 1600);
+    }
+
     // Contact form submit logic - AJAX Fetch submission to Formspree
     window.handleContactSubmit = function(event) {
         event.preventDefault();
@@ -1284,6 +1539,19 @@ document.addEventListener("DOMContentLoaded", () => {
         const submitText = document.getElementById("submit-text");
         const originalText = submitText ? submitText.textContent : "Send Transmission";
         
+        // Trigger celebratory Cyber Shard burst and tactile 3D punch
+        if (submitBtn) {
+            const rect = submitBtn.getBoundingClientRect();
+            triggerCyberShardBurst(rect.left + rect.width / 2, rect.top + rect.height / 2);
+
+            if (typeof gsap !== "undefined") {
+                gsap.timeline()
+                    .to(submitBtn, { scale: 0.92, rotateX: 8, duration: 0.12 })
+                    .to(submitBtn, { scale: 1.05, rotateX: -3, duration: 0.2, ease: "back.out(2)" })
+                    .to(submitBtn, { scale: 1, rotateX: 0, duration: 0.25 });
+            }
+        }
+
         // Set loading state
         if (submitText) submitText.textContent = "Transmitting...";
         if (submitBtn) submitBtn.style.pointerEvents = "none";
@@ -1300,6 +1568,10 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(response => {
             if (response.ok) {
                 contactForm.reset();
+                if (submitBtn) {
+                    const rect = submitBtn.getBoundingClientRect();
+                    triggerCyberShardBurst(rect.left + rect.width / 2, rect.top + rect.height / 2);
+                }
                 showTransmissionSuccessModal();
             } else {
                 alert("Transmission failed. Please verify your entries and try again.");
